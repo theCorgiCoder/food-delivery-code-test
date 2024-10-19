@@ -5,8 +5,8 @@ export const Colors = {
     Subtitle: "#999999",
   },
   response: {
-    Selected: "#E2A364",
-    Positive: "#2ECC71",
+    Grey: "#E2A364",
+    Green: "#2ECC71",
     Negative: "#C0392B",
   },
   background: "#F8F8F8",
