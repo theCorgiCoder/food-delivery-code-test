@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    marginTop: 80,
+    marginTop: 15,
     paddingHorizontal: 15,
   },
   contentBox: {
@@ -24,7 +24,8 @@ export const styles = StyleSheet.create({
     right: 0,
     height: 80,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
+    paddingHorizontal: 15,
     zIndex: 10,
   },
 });
