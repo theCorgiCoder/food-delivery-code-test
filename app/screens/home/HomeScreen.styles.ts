@@ -2,11 +2,29 @@ import { StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 
 export const styles = StyleSheet.create({
-  Container: {
+  container: {
     flex: 1,
+    backgroundColor: Colors.background,
+  },
+  content: {
+    flex: 1,
+    marginTop: 80,
+    paddingHorizontal: 15,
+  },
+  contentBox: {
+    height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colors.background,
-    paddingHorizontal: 18,
+    marginVertical: 10,
+  },
+  header: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 80,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 10,
   },
 });
