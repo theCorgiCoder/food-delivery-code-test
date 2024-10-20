@@ -5,9 +5,10 @@ import DetailContentBox from "@/components/detailContentBox/DetailContentBox";
 import { styles } from "./DetailsScreen.styles";
 import BackIcon from "../../../assets/images/backIcon.svg";
 import CustomButton from "@/components/button/CustomButton";
-import { useGlobalRouter } from "@/hooks/useGlobalRouter";
 
 const DetailsScreen = () => {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <View style={styles.banner}>
@@ -16,7 +17,7 @@ const DetailsScreen = () => {
           width={30}
           height={30}
           icon={BackIcon}
-          onPress={() => useGlobalRouter.back()}
+          onPress={() => router.back()}
           style={styles.button}
         />
       </View>
