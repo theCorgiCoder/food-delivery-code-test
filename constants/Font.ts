@@ -1,32 +1,55 @@
-export const Font = {
-  titleOne: {
-    fontFamily: "Helvetica",
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
+  titleOneText: {
+    fontFamily: "Helvetica-Bold",
     fontSize: 18,
     fontWeight: 400,
   },
-  titleTwo: {
+  titleTwoText: {
     fontFamily: "Poppins-Regular",
     fontSize: 14,
     fontWeight: 500,
   },
-  subtitle: {
+  subtitleText: {
     fontFamily: "Helvetica",
     fontSize: 12,
-    fontWeight: 700,
+    fontWeight: 400,
   },
-  footer: {
-    fontFamily: "Inter",
+  footerText: {
+    fontFamily: "Inter_18pt-Regular",
     fontSize: 10,
     fontWeight: 500,
   },
-  headlineOne: {
+  headlineOneText: {
     fontFamily: "Helvetica",
     fontSize: 24,
-    fontWeight: 500,
+    fontWeight: 400,
   },
-  headlineTwo: {
+  headlineTwoText: {
     fontFamily: "Helvetica",
     fontSize: 16,
     fontWeight: 400,
   },
+});
+
+export const getTextStyle = (title: string) => {
+  switch (title) {
+    case "title1":
+      return styles.titleOneText;
+    case "title2":
+      return styles.titleTwoText;
+    case "subtitle":
+      return styles.subtitleText;
+    case "footer":
+      return styles.footerText;
+    case "headline1":
+      return styles.headlineOneText;
+    case "headline2":
+      return styles.headlineTwoText;
+    default:
+      return styles.subtitleText;
+  }
 };
+
+export const titleStyle = (title: string) => getTextStyle(title);

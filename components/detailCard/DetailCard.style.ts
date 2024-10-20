@@ -3,10 +3,13 @@ import { Colors } from "@/constants/Colors";
 
 export const styles = StyleSheet.create({
   container: {
-    height: 144,
+    flex: 1,
+    justifyContent: "space-around",
+    paddingHorizontal: 15,
+    height: 140,
     width: "100%",
     borderRadius: 12,
 
-    backgroundColor: Colors.text.LightText,
+    backgroundColor: Colors.White,
   },
 });

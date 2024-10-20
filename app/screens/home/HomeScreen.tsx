@@ -10,6 +10,9 @@ import FilterBar from "@/components/filterBar/FilterBar";
 
 const HomeScreen = () => {
   const router = useRouter();
+  const handleNavigation = () => {
+    router.push("../details/DetailsScreen"); // Navigate to DetailsScreen
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -17,11 +20,7 @@ const HomeScreen = () => {
       <ScrollView style={styles.content}>
         <View style={styles.contentBox}>
           <FilterBar />
-          <Card />
-          <Button
-            title="Go to Details"
-            onPress={() => router.push("/screens/details/DetailsScreen")}
-          />
+          <Card handleOnPress={handleNavigation} />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -1,10 +1,10 @@
 import { View } from "react-native";
 import { useRouter } from "expo-router";
-import DetailContentBox from "@/components/detailContentBox/DetailContentBox";
 import CustomImage from "@/components/customImage/CustomImage";
-import Button from "@/components/button/Button";
+import DetailCard from "@/components/detailCard/DetailCard";
 import { styles } from "./DetailsScreen.styles";
 import BackIcon from "../../../assets/images/backIcon.svg";
+import CustomButton from "@/components/button/CustomButton";
 
 const DetailsScreen = () => {
   const router = useRouter();
@@ -13,15 +13,16 @@ const DetailsScreen = () => {
     <View style={styles.container}>
       <View style={styles.banner}>
         <CustomImage />
-        <Button
+        <CustomButton
+          width={30}
+          height={30}
           icon={BackIcon}
           onPress={() => router.back()}
           style={styles.button}
         />
       </View>
-
       <View style={styles.content}>
-        <DetailContentBox />
+        <DetailCard />
       </View>
     </View>
   );
