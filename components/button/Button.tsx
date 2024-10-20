@@ -1,20 +1,16 @@
 import React from "react";
 import { Text, TouchableHighlight, ViewStyle } from "react-native";
 import { styles } from "./Button.styles";
-import { useRouter } from "expo-router";
 
 interface ButtonProps {
+  icon: string;
+  onPress: () => void;
   style?: ViewStyle | ViewStyle[];
 }
 
-const Button: React.FC<ButtonProps> = ({ style }) => {
-  const router = useRouter();
-
+const Button: React.FC<ButtonProps> = ({ icon, onPress, style }) => {
   return (
-    <TouchableHighlight
-      style={[styles.container, style]}
-      onPress={() => router.back()}
-    >
+    <TouchableHighlight style={[styles.container, style]} onPress={onPress}>
       <Text>Button</Text>
     </TouchableHighlight>
   );

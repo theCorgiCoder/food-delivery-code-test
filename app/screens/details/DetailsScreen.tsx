@@ -6,10 +6,12 @@ import Button from "@/components/button/Button";
 import { styles } from "./DetailsScreen.styles";
 
 const DetailsScreen = () => {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <CustomImage />
-      <Button style={styles.button} />
+      <Button icon="" onPress={() => router.back()} style={styles.button} />
       <View style={styles.content}>
         <DetailContentBox />
       </View>
