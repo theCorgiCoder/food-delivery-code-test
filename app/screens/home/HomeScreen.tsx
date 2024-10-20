@@ -11,7 +11,6 @@ import FilterBar from "@/components/filterBar/FilterBar";
 const HomeScreen = () => {
   const router = useRouter();
   const handleNavigation = () => {
-    console.log("BUTTON PRESSED!");
     router.push("../details/DetailsScreen"); // Navigate to DetailsScreen
   };
 
