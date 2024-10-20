@@ -9,7 +9,7 @@ interface ImageProps {
 const CustomImage: React.FC<ImageProps> = ({ style }) => {
   return (
     <View style={style}>
-      <Image />
+      {/* <Image source={{ uri: image }} resizeMode="cover" /> */}
     </View>
   );
 };

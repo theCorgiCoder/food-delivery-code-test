@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     paddingHorizontal: 15,
   },
-  contentBox: {
+  card: {
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
@@ -28,4 +28,5 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
     zIndex: 10,
   },
+  filters: {},
 });

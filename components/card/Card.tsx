@@ -10,11 +10,12 @@ import ClockIcon from "@/assets/images/clockIcon.svg";
 import CustomImage from "../customImage/CustomImage";
 
 interface CardProps {
+  imageUrl: string;
   style?: ViewStyle | ViewStyle[];
   handleOnPress: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ style, handleOnPress }) => {
+const Card: React.FC<CardProps> = ({ imageUrl, style, handleOnPress }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleOnPress} style={styles.pressable}>
