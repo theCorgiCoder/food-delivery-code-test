@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, ViewStyle } from "react-native";
-import { styles } from "./Button.styles";
+import { styles } from "./CustomButton.styles";
 import { SvgProps } from "react-native-svg";
 import { View } from "react-native";
 import Icon from "../icon/Icon";
@@ -13,7 +13,7 @@ interface ButtonProps {
   onPress: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const CustomButton: React.FC<ButtonProps> = ({
   icon: customIcon,
   width,
   height,
@@ -29,4 +29,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default CustomButton;
