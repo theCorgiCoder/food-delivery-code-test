@@ -1,20 +1,29 @@
 import React from "react";
-import { Text, TouchableOpacity, ViewStyle } from "react-native";
+import { TouchableOpacity, ViewStyle } from "react-native";
 import { styles } from "./Button.styles";
 import { SvgProps } from "react-native-svg";
 import { View } from "react-native";
+import Icon from "../icon/Icon";
 
 interface ButtonProps {
   icon?: React.FC<SvgProps>;
+  width?: number;
+  height?: number;
   style?: ViewStyle | ViewStyle[];
   onPress: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ icon: Icon, onPress, style }) => {
+const Button: React.FC<ButtonProps> = ({
+  icon: customIcon,
+  width,
+  height,
+  onPress,
+  style,
+}) => {
   return (
     <View>
       <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
-        {Icon && <Icon width={30} height={30} />}
+        <Icon icon={customIcon} width={width} height={height} />
       </TouchableOpacity>
     </View>
   );

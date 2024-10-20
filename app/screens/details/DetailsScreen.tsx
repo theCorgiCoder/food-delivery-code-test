@@ -1,10 +1,8 @@
-import { View } from "react-native";
+import { View, Text, Button } from "react-native";
 import { useRouter } from "expo-router";
-import DetailContentBox from "@/components/detailContentBox/DetailContentBox";
 import CustomImage from "@/components/customImage/CustomImage";
-import Button from "@/components/button/Button";
+import DetailContentBox from "@/components/detailContentBox/DetailContentBox";
 import { styles } from "./DetailsScreen.styles";
-import BackIcon from "../../../assets/images/backIcon.svg";
 
 const DetailsScreen = () => {
   const router = useRouter();

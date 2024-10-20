@@ -1,11 +1,19 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, ViewStyle, Text } from "react-native";
 import { styles } from "./Card.styles";
+import { TouchableOpacity } from "react-native";
 
-const Card = () => {
+interface CardProps {
+  style?: ViewStyle | ViewStyle[];
+  handleOnPress: () => void;
+}
+
+const Card: React.FC<CardProps> = ({ style, handleOnPress }) => {
   return (
     <View style={styles.container}>
-      <Text>Restaurant Card</Text>
+      <TouchableOpacity onPress={handleOnPress} style={styles.pressable}>
+        <Text>Card</Text>
+      </TouchableOpacity>
     </View>
   );
 };
