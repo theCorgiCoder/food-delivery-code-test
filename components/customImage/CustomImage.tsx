@@ -1,11 +1,15 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, ViewStyle } from "react-native";
 import { styles } from "./CustomImage.styles";
 
-const CustomImage = () => {
+interface ImageProps {
+  style?: ViewStyle | ViewStyle[];
+}
+
+const CustomImage: React.FC<ImageProps> = ({ style }) => {
   return (
-    <View style={styles.container}>
-      <Text>Image</Text>
+    <View style={style}>
+      <Text>Image goes here</Text>
     </View>
   );
 };

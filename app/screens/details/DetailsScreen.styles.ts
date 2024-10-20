@@ -8,17 +8,8 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   banner: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 80,
-  },
-  button: {
-    position: "absolute",
-    left: 15,
-    top: "5%",
-    zIndex: 10,
+    width: "100%",
+    height: 200,
   },
   content: {
     position: "absolute",
@@ -26,5 +17,11 @@ export const styles = StyleSheet.create({
     right: 15,
     top: "20%",
     zIndex: 10,
+  },
+  button: {
+    position: "absolute",
+    left: 15,
+    zIndex: 20,
+    marginTop: "5%",
   },
 });
