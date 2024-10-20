@@ -18,10 +18,10 @@ const HomeScreen = () => {
         <View style={styles.contentBox}>
           <FilterBar />
           <Card />
-          {/* <Button
+          <Button
             title="Go to Details"
             onPress={() => router.push("/screens/details/DetailsScreen")}
-          /> */}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

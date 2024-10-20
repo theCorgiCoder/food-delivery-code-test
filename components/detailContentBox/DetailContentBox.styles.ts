@@ -3,10 +3,9 @@ import { Colors } from "@/constants/Colors";
 
 export const styles = StyleSheet.create({
   container: {
-    height: 196,
+    height: 144,
     width: "100%",
-    borderTopRightRadius: 12,
-    borderTopLeftRadius: 12,
+    borderRadius: 12,
     backgroundColor: Colors.text.LightText,
   },
 });

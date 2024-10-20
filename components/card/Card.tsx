@@ -4,7 +4,7 @@ import { styles } from "./Card.styles";
 
 const Card = () => {
   return (
-    <View style={styles.Container}>
+    <View style={styles.container}>
       <Text>Restaurant Card</Text>
     </View>
   );

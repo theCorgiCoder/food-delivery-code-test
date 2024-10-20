@@ -1,13 +1,19 @@
 import { View, Text, Button } from "react-native";
 import { useRouter } from "expo-router";
+import DetailContentBox from "@/components/detailContentBox/DetailContentBox";
+import CustomImage from "@/components/customImage/CustomImage";
+import { styles } from "./DetailsScreen.styles";
 
 const DetailsScreen = () => {
   const router = useRouter();
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Details Screen</Text>
-      <Button title="Go Back" onPress={() => router.back()} />
+    <View style={styles.container}>
+      <CustomImage />
+      <View style={styles.content}>
+        <DetailContentBox />
+        <Button title="Go Back" onPress={() => router.back()} />
+      </View>
     </View>
   );
 };
