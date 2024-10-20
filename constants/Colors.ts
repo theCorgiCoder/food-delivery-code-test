@@ -5,22 +5,22 @@ export const Colors = {
   Selected: "#E2A364",
   Positive: "#2ECC71",
   Negative: "#C0392B",
-  background: "#F8F8F8",
+  Background: "#F8F8F8",
 };
 
 export const getTextColor = (color: string) => {
   switch (color) {
-    case "Black":
+    case "black":
       return { color: Colors.Black };
-    case "White":
+    case "white":
       return { color: Colors.White };
-    case "Grey":
+    case "grey":
       return { color: Colors.Grey };
-    case "Selected":
+    case "selected":
       return { color: Colors.Selected };
-    case "Positive":
+    case "positive":
       return { color: Colors.Positive };
-    case "Negative":
+    case "negative":
       return { color: Colors.Negative };
     default:
       return { color: Colors.Black };

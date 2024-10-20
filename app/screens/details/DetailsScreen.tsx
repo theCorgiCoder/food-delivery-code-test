@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { useRouter } from "expo-router";
 import CustomImage from "@/components/customImage/CustomImage";
-import DetailContentBox from "@/components/detailContentBox/DetailContentBox";
+import DetailCard from "@/components/detailCard/DetailCard";
 import { styles } from "./DetailsScreen.styles";
 import BackIcon from "../../../assets/images/backIcon.svg";
 import CustomButton from "@/components/button/CustomButton";
@@ -22,7 +22,7 @@ const DetailsScreen = () => {
         />
       </View>
       <View style={styles.content}>
-        <DetailContentBox />
+        <DetailCard />
       </View>
     </View>
   );

@@ -6,20 +6,24 @@ interface IconProps {
   icon?: React.FC<SvgProps>;
   width?: number;
   height?: number;
+  color?: string;
   style?: ViewStyle | ViewStyle[];
 }
 
-const Icon: React.FC<IconProps> = ({
+const CustomIcon: React.FC<IconProps> = ({
   icon: IconComponent,
   width,
   height,
+  color,
   style,
 }) => {
   return (
-    <View>
-      {IconComponent && <IconComponent width={width} height={height} />}
+    <View style={style}>
+      {IconComponent && (
+        <IconComponent width={width} height={height} color={color} />
+      )}
     </View>
   );
 };
 
-export default Icon;
+export default CustomIcon;

@@ -11,6 +11,15 @@ export const styles = StyleSheet.create({
     width: "100%",
     borderTopRightRadius: 12,
     borderTopLeftRadius: 12,
-    backgroundColor: Colors.text.LightText,
+    backgroundColor: Colors.White,
+  },
+  contentBox: {
+    flex: 1,
+    padding: 10,
+    justifyContent: "flex-end",
+  },
+  title: {
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
 });

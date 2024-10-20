@@ -1,39 +1,35 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import CustomIcon from "../icon/CustomIcon";
-import { styles } from "./Rating.styles";
+import { styles } from "./Clock.styles";
 import { SvgProps } from "react-native-svg";
 import CustomText from "../customText/CustomText";
 
-interface RatingProps {
+interface ClockProps {
   icon?: React.FC<SvgProps>;
   textStyle: string;
-  showRating: number;
+  time: string;
   width: number;
   height: number;
   iconColor?: string;
   textColor: string;
 }
 
-const Rating: React.FC<RatingProps> = ({
+const Clock: React.FC<ClockProps> = ({
   icon,
   width,
   height,
   textStyle,
   iconColor,
   textColor,
-  showRating,
+  time,
 }) => {
   return (
     <View style={styles.container}>
       <CustomIcon icon={icon} width={width} height={height} color={iconColor} />
-      <CustomText
-        title={textStyle}
-        color={textColor}
-        content={showRating.toFixed(1)}
-      />
+      <CustomText title={textStyle} color={textColor} content={time} />
     </View>
   );
 };
 
-export default Rating;
+export default Clock;

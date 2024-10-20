@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: "relative",
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.Background,
   },
   banner: {
     width: "100%",

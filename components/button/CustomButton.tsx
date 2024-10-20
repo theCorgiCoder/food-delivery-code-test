@@ -3,7 +3,7 @@ import { TouchableOpacity, ViewStyle } from "react-native";
 import { styles } from "./CustomButton.styles";
 import { SvgProps } from "react-native-svg";
 import { View } from "react-native";
-import Icon from "../icon/Icon";
+import CustomIcon from "../icon/CustomIcon";
 
 interface ButtonProps {
   icon?: React.FC<SvgProps>;
@@ -14,7 +14,7 @@ interface ButtonProps {
 }
 
 const CustomButton: React.FC<ButtonProps> = ({
-  icon: customIcon,
+  icon: icon,
   width,
   height,
   onPress,
@@ -23,7 +23,7 @@ const CustomButton: React.FC<ButtonProps> = ({
   return (
     <View>
       <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
-        <Icon icon={customIcon} width={width} height={height} />
+        <CustomIcon icon={icon} width={width} height={height} />
       </TouchableOpacity>
     </View>
   );
