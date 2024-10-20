@@ -14,6 +14,12 @@ export const styles = StyleSheet.create({
     right: 0,
     height: 80,
   },
+  button: {
+    position: "absolute",
+    left: 15,
+    top: "5%",
+    zIndex: 10,
+  },
   content: {
     position: "absolute",
     left: 15,

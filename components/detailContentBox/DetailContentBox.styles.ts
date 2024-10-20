@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     height: 144,
     width: "100%",
     borderRadius: 12,
+
     backgroundColor: Colors.text.LightText,
   },
 });
