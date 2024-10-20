@@ -1,8 +1,7 @@
 import { View, Text, Button, StyleProp, ViewStyle } from "react-native";
 import { useRouter } from "expo-router";
 import { styles } from "./Header.styles";
-import Svg, { Path } from "react-native-svg";
-import Logo from "../logo/Logo";
+import Logo from "@/assets/images/Logo.svg";
 
 interface HeaderProps {
   style?: StyleProp<ViewStyle>; // Allow optional custom styles for the View
