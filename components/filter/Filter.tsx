@@ -1,7 +1,7 @@
 import React from "react";
-import { FilterData } from "@/services/api";
 import { TouchableOpacity, Image, Text, ViewStyle, View } from "react-native";
 import { styles } from "./Filter.styles";
+import CustomText from "../customText/CustomText";
 
 interface FilterProps {
   image: string;
@@ -13,13 +13,18 @@ interface FilterProps {
 const Filter: React.FC<FilterProps> = ({ onPress, name, image, style }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <View style={styles.shadow}>
+      <View style={styles.dropShadow}>
         <Image
           source={{ uri: image }}
           style={styles.image}
           resizeMode="cover"
         />
-        <Text style={styles.text}>{name}</Text>
+        <CustomText
+          title={"title2"}
+          content={name}
+          color={"black"}
+          style={styles.text}
+        />
       </View>
     </TouchableOpacity>
   );

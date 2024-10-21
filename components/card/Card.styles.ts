@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
     width: "100%",
     borderTopRightRadius: 12,
     borderTopLeftRadius: 12,
-    backgroundColor: Colors.White,
   },
   contentBox: {
     flex: 1,

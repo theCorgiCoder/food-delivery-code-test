@@ -2,9 +2,11 @@ import { StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 
 export const styles = StyleSheet.create({
-  container: { paddingVertical: 10 },
-  shadow: {
-    justifyContent: "center",
+  container: {
+    paddingVertical: 10,
+  },
+  dropShadow: {
+    justifyContent: "flex-start",
     flexDirection: "row",
     alignItems: "center",
     maxWidth: 150,
@@ -16,15 +18,15 @@ export const styles = StyleSheet.create({
       width: 1,
       height: 1,
     },
-    shadowOpacity: 0.15,
-    shadowRadius: 2,
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
   },
   image: {
     width: 50,
     height: 50,
   },
   text: {
-    paddingLeft: 5,
-    paddingRight: 10,
+    width: 100,
+    paddingLeft: 6,
   },
 });

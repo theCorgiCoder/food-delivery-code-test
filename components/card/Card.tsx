@@ -1,13 +1,14 @@
 import React from "react";
-import { View, ViewStyle, Text } from "react-native";
+import { View, ViewStyle, TouchableOpacity } from "react-native";
 import { styles } from "./Card.styles";
-import { TouchableOpacity } from "react-native";
 import CustomText from "../customText/CustomText";
 import Rating from "../rating/Rating";
 import StarIcon from "@/assets/images/starIcon.svg";
 import Clock from "../clock/Clock";
 import ClockIcon from "@/assets/images/clockIcon.svg";
 import CustomImage from "../customImage/CustomImage";
+import usePressState from "@/hooks/usePressState";
+import { Colors } from "@/constants/Colors";
 
 interface CardProps {
   style?: ViewStyle | ViewStyle[];
@@ -15,13 +16,21 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ style, handleOnPress }) => {
+  const { handlePressIn, handlePressOut, backgroundColor } = usePressState(
+    Colors.White
+  );
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleOnPress} style={styles.pressable}>
+      <TouchableOpacity
+        onPress={handleOnPress}
+        style={[styles.pressable, { backgroundColor }]}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+      >
         <CustomImage />
         <View style={styles.contentBox}>
           <View style={styles.title}>
-            {/* title */}
             <CustomText title={"title1"} content={"Title"} color={"black"} />
             <Rating
               icon={StarIcon}
@@ -32,7 +41,7 @@ const Card: React.FC<CardProps> = ({ style, handleOnPress }) => {
               showRating={2.0}
             />
           </View>
-          {/* subtitle */}
+
           <CustomText
             title={"subtitle"}
             content={"subtitle tag"}

@@ -18,4 +18,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
     zIndex: 10,
   },
+  spinnerContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });

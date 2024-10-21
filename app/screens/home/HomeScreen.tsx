@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, View, Text } from "react-native";
 import { useRouter } from "expo-router";
-import { ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./HomeScreen.styles";
 import Header from "@/components/header/Header";
 import Card from "@/components/card/Card";
 import FilterBar from "@/components/filterBar/FilterBar";
-import { fetchFilterById, FilterData } from "@/services/api";
+import { fetchFilterById } from "@/utils/filterService";
+import { FilterModel } from "@/models/apiTypes";
 import filterIds from "@/constants/Filters";
 
 const HomeScreen = () => {
   const router = useRouter();
-  const [filters, setFilters] = useState<FilterData[]>([]);
+  const [filters, setFilters] = useState<FilterModel[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const HomeScreen = () => {
         filterIds.map(async (id) => await fetchFilterById(id))
       );
 
-      setFilters(fetchedFilters.filter(Boolean) as FilterData[]);
+      setFilters(fetchedFilters.filter(Boolean) as FilterModel[]);
       setLoading(false);
     };
 
@@ -34,7 +34,7 @@ const HomeScreen = () => {
 
   if (loading) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.spinnerContainer}>
         <ActivityIndicator size="large" color="#0000ff" />
       </SafeAreaView>
     );

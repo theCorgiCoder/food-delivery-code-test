@@ -1,21 +1,12 @@
-import { ApiResponse } from "../types";
+import { BASE_URL } from "@/constants/urls";
+import { FilterModel } from "@/models/apiTypes";
 
-const BASE_URL = "https://food-delivery.umain.io/api/v1";
-
-//filter data response structure
-export interface FilterData {
-  id: string;
-  name: string;
-  image_url: string;
-}
-
+//Filter By ID Fetch
 export const fetchFilterById = async (
   id: string
-): Promise<FilterData | null> => {
+): Promise<FilterModel | null> => {
   try {
-    const response = await fetch(
-      `https://food-delivery.umain.io/api/v1/filter/${id}`
-    );
+    const response = await fetch(`${BASE_URL}filter/${id}`);
 
     if (!response.ok) {
       const errorMessage = await response.text();
@@ -24,7 +15,7 @@ export const fetchFilterById = async (
       );
     }
 
-    const data: FilterData = await response.json();
+    const data = await response.json();
 
     return data;
   } catch (error) {

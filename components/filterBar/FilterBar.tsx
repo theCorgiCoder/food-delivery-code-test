@@ -1,12 +1,12 @@
 import React from "react";
 import { FlatList } from "react-native";
 import { styles } from "./FilterBar.styles";
-import { FilterData } from "@/services/api";
 import Filter from "../filter/Filter";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { FilterModel } from "@/models/apiTypes";
 
 interface FilterProps {
-  filters: FilterData[];
+  filters: FilterModel[];
   handleOnPress: () => void;
 }
 
