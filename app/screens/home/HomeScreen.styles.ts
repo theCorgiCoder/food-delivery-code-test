@@ -6,17 +6,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.Background,
   },
-  content: {
-    flex: 1,
-    marginTop: 15,
-    paddingHorizontal: 15,
-  },
-  card: {
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 10,
-  },
+  content: {},
   header: {
     position: "absolute",
     top: 0,
@@ -28,5 +18,4 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
     zIndex: 10,
   },
-  filters: {},
 });

@@ -1,22 +1,26 @@
 import React from "react";
 import { FilterData } from "@/services/api";
-import { TouchableOpacity, Image, Text } from "react-native";
+import { TouchableOpacity, Image, Text, ViewStyle, View } from "react-native";
 import { styles } from "./Filter.styles";
 
 interface FilterProps {
-  filterData: FilterData;
+  image: string;
+  name: string;
   onPress: () => void;
+  style?: ViewStyle | ViewStyle[];
 }
 
-const Filter: React.FC<FilterProps> = ({ onPress, filterData }) => {
+const Filter: React.FC<FilterProps> = ({ onPress, name, image, style }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image
-        source={{ uri: filterData.image_url }}
-        style={styles.image}
-        resizeMode="cover"
-      />
-      <Text>{filterData.name}</Text> {/* Display filter name */}
+    <TouchableOpacity onPress={onPress} style={styles.container}>
+      <View style={styles.shadow}>
+        <Image
+          source={{ uri: image }}
+          style={styles.image}
+          resizeMode="cover"
+        />
+        <Text style={styles.text}>{name}</Text>
+      </View>
     </TouchableOpacity>
   );
 };

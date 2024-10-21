@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { useRouter } from "expo-router";
 import { ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,48 +12,48 @@ import filterIds from "@/constants/Filters";
 
 const HomeScreen = () => {
   const router = useRouter();
-  const handleNavigation = () => {
-    router.push("../details/DetailsScreen"); // Navigate to DetailsScreen
-  };
-
   const [filters, setFilters] = useState<FilterData[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchFilters = async () => {
-      const fetchedFilters: FilterData[] = [];
-      for (const id of filterIds) {
-        const filterData = await fetchFilterById(id);
-        if (filterData) {
-          fetchedFilters.push(filterData);
-        }
-      }
-      setFilters(fetchedFilters);
+      const fetchedFilters = await Promise.all(
+        filterIds.map(async (id) => await fetchFilterById(id))
+      );
+
+      setFilters(fetchedFilters.filter(Boolean) as FilterData[]);
       setLoading(false);
     };
 
     fetchFilters();
   }, []);
 
+  const handleNavigation = () => {
+    router.push("../details/DetailsScreen");
+  };
+
   if (loading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </SafeAreaView>
+    );
   }
 
   if (filters.length === 0) {
-    return <Text>No filters available.</Text>;
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text>No filters available.</Text>
+      </SafeAreaView>
+    );
   }
-
   return (
     <SafeAreaView style={styles.container}>
       <Header style={styles.header} />
       <FilterBar filters={filters} handleOnPress={handleNavigation} />
-      <ScrollView style={styles.content}>
-        <Card
-          imageUrl={""}
-          handleOnPress={handleNavigation}
-          style={styles.card}
-        />
-      </ScrollView>
+      <View style={styles.content}>
+        <Card handleOnPress={handleNavigation} />
+      </View>
     </SafeAreaView>
   );
 };

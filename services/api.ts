@@ -25,7 +25,7 @@ export const fetchFilterById = async (
     }
 
     const data: FilterData = await response.json();
-    console.log("Fetched filter data:", data);
+
     return data;
   } catch (error) {
     if (error instanceof Error) {

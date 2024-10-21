@@ -1,40 +1,32 @@
 import React from "react";
-import {
-  FlatList,
-  ScrollView,
-  Image,
-  Text,
-  View,
-  ViewStyle,
-} from "react-native";
+import { FlatList } from "react-native";
 import { styles } from "./FilterBar.styles";
-import CustomImage from "../customImage/CustomImage";
 import { FilterData } from "@/services/api";
 import Filter from "../filter/Filter";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface FilterProps {
   filters: FilterData[];
-  style?: ViewStyle | ViewStyle[];
   handleOnPress: () => void;
 }
 
-const FilterBar: React.FC<FilterProps> = ({
-  style,
-  handleOnPress,
-  filters,
-}) => {
+const FilterBar: React.FC<FilterProps> = ({ handleOnPress, filters }) => {
   return (
-    <FlatList
-      data={filters}
-      keyExtractor={(item) => item.id}
-      horizontal
-      renderItem={({ item }) => (
-        <View style={styles.filterContainer}>
-          <Image source={{ uri: item.image_url }} style={styles.image} />
-          <Text>{item.name}</Text>
-        </View>
-      )}
-    />
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={filters}
+        keyExtractor={(item) => item.id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={({ item }) => (
+          <Filter
+            image={item.image_url}
+            name={item.name}
+            onPress={handleOnPress}
+          />
+        )}
+      />
+    </SafeAreaView>
   );
 };
 
