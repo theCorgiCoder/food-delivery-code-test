@@ -1,56 +1,68 @@
 import React from "react";
 import { View, ViewStyle, TouchableOpacity } from "react-native";
-import { styles } from "./Card.styles";
+import { styles } from "./RestaurantCard.styles";
 import CustomText from "../customText/CustomText";
 import Rating from "../rating/Rating";
 import StarIcon from "@/assets/images/starIcon.svg";
 import Clock from "../clock/Clock";
-import ClockIcon from "@/assets/images/clockIcon.svg";
 import CustomImage from "../customImage/CustomImage";
 import usePressState from "@/hooks/usePressState";
 import { Colors } from "@/constants/Colors";
+import { RestaurantModel } from "@/models/apiTypes";
 
 interface CardProps {
-  style?: ViewStyle | ViewStyle[];
+  data: RestaurantModel;
   handleOnPress: () => void;
+  style?: ViewStyle | ViewStyle[];
 }
 
-const Card: React.FC<CardProps> = ({ style, handleOnPress }) => {
+const RestaurantCard: React.FC<CardProps> = ({
+  data,
+  handleOnPress,
+  style,
+}) => {
   const { handlePressIn, handlePressOut, backgroundColor } = usePressState(
     Colors.White
   );
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <TouchableOpacity
         onPress={handleOnPress}
         style={[styles.pressable, { backgroundColor }]}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
       >
-        <CustomImage />
+        <CustomImage image={data.image_url} />
         <View style={styles.contentBox}>
           <View style={styles.title}>
-            <CustomText title={"title1"} content={"Title"} color={"black"} />
+            <CustomText title={"title1"} content={data.name} color={"black"} />
             <Rating
               icon={StarIcon}
               width={15}
               height={15}
               textColor={"black"}
               textStyle={"subtitle"}
-              showRating={2.0}
+              showRating={data.rating}
             />
           </View>
-
-          <CustomText
-            title={"subtitle"}
-            content={"subtitle tag"}
-            color={"grey"}
-          />
+          {/* <View>
+            {data.filters.map(
+              (
+                filter // Ensure you're using data.filters here
+              ) => (
+                <CustomText
+                  key={filter.id}
+                  title="subtitle"
+                  content={filter.name}
+                  color="gray"
+                />
+              )
+            )}
+          </View> */}
           <Clock
-            icon={ClockIcon}
             textStyle={"footer1"}
-            time={"30 mins"}
+            time={data.delivery_time_minutes}
             width={15}
             height={15}
             textColor={"grey"}
@@ -61,4 +73,4 @@ const Card: React.FC<CardProps> = ({ style, handleOnPress }) => {
   );
 };
 
-export default Card;
+export default RestaurantCard;

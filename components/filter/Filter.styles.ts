@@ -27,8 +27,9 @@ export const styles = StyleSheet.create({
     height: 50,
   },
   text: {
-    maxWidth: 100,
+    maxWidth: 150,
+    paddingRight: 10,
+    paddingLeft: 5,
     textAlign: "center",
-    paddingHorizontal: 10,
   },
 });

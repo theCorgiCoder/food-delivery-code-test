@@ -12,6 +12,7 @@ export interface RestaurantModel {
   filterIds: string[];
   image_url: string;
   delivery_time_minutes: number;
+  filters?: FilterModel[];
 }
 
 export interface openStatusModel {

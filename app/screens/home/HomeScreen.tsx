@@ -1,38 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { ActivityIndicator, View, Text } from "react-native";
+import React from "react";
+import { ActivityIndicator, View, Text, FlatList } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./HomeScreen.styles";
 import Header from "@/components/header/Header";
-import Card from "@/components/card/Card";
+import RestaurantCard from "@/components/card/RestaurantCard";
 import FilterBar from "@/components/filterBar/FilterBar";
-import { fetchFilterById } from "@/utils/filterService";
-import { FilterModel } from "@/models/apiTypes";
-import filterIds from "@/constants/Filters";
+import { useFiltersLoader } from "@/utils/filterLoader";
+import { useRestaurantsLoader } from "@/utils/restaurantLoader";
 
 const HomeScreen = () => {
   const router = useRouter();
-  const [filters, setFilters] = useState<FilterModel[]>([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    filters,
+    loading: filtersLoading,
+    error: filtersError,
+  } = useFiltersLoader();
 
-  useEffect(() => {
-    const fetchFilters = async () => {
-      const fetchedFilters = await Promise.all(
-        filterIds.map(async (id) => await fetchFilterById(id))
-      );
-
-      setFilters(fetchedFilters.filter(Boolean) as FilterModel[]);
-      setLoading(false);
-    };
-
-    fetchFilters();
-  }, []);
+  const {
+    restaurants,
+    loading: restaurantsLoading,
+    error: restaurantsError,
+  } = useRestaurantsLoader();
 
   const handleNavigation = () => {
     router.push("../details/DetailsScreen");
   };
 
-  if (loading) {
+  if (restaurantsLoading || filtersLoading) {
     return (
       <SafeAreaView style={styles.spinnerContainer}>
         <ActivityIndicator size="large" color="#0000ff" />
@@ -40,19 +35,40 @@ const HomeScreen = () => {
     );
   }
 
-  if (filters.length === 0) {
+  if (restaurantsError || filtersError) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>No filters available.</Text>
+        <Text>{restaurantsError || filtersError}</Text>
       </SafeAreaView>
     );
   }
+
+  if (filters.length === 0) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text>{filtersError}</Text>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <Header style={styles.header} />
-      <FilterBar filters={filters} handleOnPress={handleNavigation} />
-      <View style={styles.content}>
-        <Card handleOnPress={handleNavigation} />
+      {/* <Header style={styles.header} />
+      <FilterBar filters={filters} handleOnPress={handleNavigation} /> */}
+      <View style={styles.list}>
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 10 }}
+          showsVerticalScrollIndicator={true}
+          data={restaurants}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <RestaurantCard
+              data={item}
+              handleOnPress={handleNavigation}
+              style={{ marginVertical: 10 }}
+            />
+          )}
+        />
       </View>
     </SafeAreaView>
   );

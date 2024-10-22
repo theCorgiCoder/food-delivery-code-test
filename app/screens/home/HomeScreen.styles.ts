@@ -23,4 +23,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  list: {
+    marginTop: "10%",
+    height: "100%",
+  },
 });
