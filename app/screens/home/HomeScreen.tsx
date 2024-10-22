@@ -72,6 +72,7 @@ const HomeScreen = () => {
               style={{ marginVertical: 10 }}
             />
           )}
+          ListFooterComponent={<View style={{ height: 100 }} />}
         />
       </View>
     </SafeAreaView>
