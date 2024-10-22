@@ -24,3 +24,8 @@ export interface openErrorModel {
   error: boolean;
   reason: string;
 }
+
+export interface OpenModel {
+  restaurant_id: string;
+  is_currently_open: boolean;
+}

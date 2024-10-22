@@ -25,4 +25,5 @@ const restaurantSlice = createSlice({
 // Export actions and reducer
 export const { selectRestaurant, clearSelectedRestaurant } =
   restaurantSlice.actions;
+
 export default restaurantSlice.reducer;
