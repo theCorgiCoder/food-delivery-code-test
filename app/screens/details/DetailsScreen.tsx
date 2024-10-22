@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import { useRouter } from "expo-router";
 import CustomImage from "@/components/customImage/CustomImage";
 import DetailCard from "@/components/detailCard/DetailCard";
@@ -35,24 +35,22 @@ const DetailsScreen = () => {
     );
   }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.banner}>
-        <CustomButton
-          width={30}
-          height={30}
-          icon={BackIcon}
-          onPress={handleBackPress}
-          style={styles.button}
-        />
-        <CustomImage
-          image={selectedRestaurant.image_url}
-          style={styles.image}
-        />
+        <View style={styles.button}>
+          <CustomButton
+            width={30}
+            height={30}
+            icon={BackIcon}
+            onPress={handleBackPress}
+          />
+        </View>
+        <CustomImage image={selectedRestaurant.image_url} />
       </View>
       <View style={styles.content}>
         <DetailCard details={selectedRestaurant} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -34,7 +34,7 @@ const RestaurantCard: React.FC<CardProps> = ({
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
       >
-        <CustomImage image={data.image_url} />
+        <CustomImage image={data.image_url} style={styles.imageCorners} />
         <View style={styles.contentBox}>
           <View style={styles.title}>
             <CustomText title={"title1"} content={data.name} color={"black"} />

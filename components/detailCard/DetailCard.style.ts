@@ -9,7 +9,13 @@ export const styles = StyleSheet.create({
     height: 140,
     width: "100%",
     borderRadius: 12,
-
     backgroundColor: Colors.White,
+    shadowColor: Colors.Black,
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 });
