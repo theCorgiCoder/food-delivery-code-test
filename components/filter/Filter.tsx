@@ -6,13 +6,13 @@ import CustomText from "../customText/CustomText";
 interface FilterProps {
   image: string;
   name: string;
-  onPress: () => void;
+
   style?: ViewStyle | ViewStyle[];
 }
 
-const Filter: React.FC<FilterProps> = ({ onPress, name, image, style }) => {
+const Filter: React.FC<FilterProps> = ({ name, image, style }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.dropShadow}>
         <Image
           source={{ uri: image }}
@@ -26,7 +26,7 @@ const Filter: React.FC<FilterProps> = ({ onPress, name, image, style }) => {
           style={styles.text}
         />
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

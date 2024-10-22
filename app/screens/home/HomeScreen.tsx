@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ActivityIndicator, View, Text, FlatList } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -15,6 +15,7 @@ import { RestaurantModel } from "@/models/apiTypes";
 const HomeScreen = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const {
     filters,
@@ -27,6 +28,22 @@ const HomeScreen = () => {
     loading: restaurantsLoading,
     error: restaurantsError,
   } = useRestaurantsLoader();
+
+  const handleFilterPress = (filterId: string) => {
+    // Toggle filter selection
+    if (selectedFilters.includes(filterId)) {
+      setSelectedFilters(selectedFilters.filter((id) => id !== filterId));
+    } else {
+      setSelectedFilters([...selectedFilters, filterId]);
+    }
+  };
+
+  const filteredRestaurants =
+    selectedFilters.length === 0
+      ? restaurants
+      : restaurants.filter((restaurant) =>
+          restaurant.filterIds.some((id) => selectedFilters.includes(id))
+        );
 
   if (restaurantsLoading || filtersLoading) {
     return (
@@ -57,10 +74,6 @@ const HomeScreen = () => {
     router.push("/screens/details/DetailsScreen");
   };
 
-  const handleFilterPress = () => {
-    console.log("Filter Pressed!");
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <Header style={styles.header} />
@@ -73,7 +86,7 @@ const HomeScreen = () => {
         <FlatList
           contentContainerStyle={{ paddingBottom: 10 }}
           showsVerticalScrollIndicator={true}
-          data={restaurants}
+          data={filteredRestaurants}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <RestaurantCard
