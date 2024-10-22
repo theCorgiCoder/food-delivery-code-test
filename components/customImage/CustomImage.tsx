@@ -3,7 +3,7 @@ import { Image, View, ViewStyle } from "react-native";
 import { styles } from "./CustomImage.styles";
 
 interface ImageProps {
-  image: string;
+  image: string | undefined;
   style?: ViewStyle | ViewStyle[];
 }
 

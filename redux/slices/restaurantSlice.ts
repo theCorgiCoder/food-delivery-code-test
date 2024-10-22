@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RestaurantModel } from "@/models/apiTypes";
 
 interface RestaurantState {
-  selectedRestaurant: RestaurantModel | null;
+  selected: RestaurantModel | null;
 }
 
 const initialState: RestaurantState = {
-  selectedRestaurant: null,
+  selected: null,
 };
 
 const restaurantSlice = createSlice({
@@ -14,10 +14,10 @@ const restaurantSlice = createSlice({
   initialState,
   reducers: {
     selectRestaurant(state, action: PayloadAction<RestaurantModel>) {
-      state.selectedRestaurant = action.payload; // Set the selected restaurant
+      state.selected = action.payload; // Set the selected restaurant
     },
     clearSelectedRestaurant(state) {
-      state.selectedRestaurant = null; // Clear the selected restaurant
+      state.selected = null; // Clear the selected restaurant
     },
   },
 });

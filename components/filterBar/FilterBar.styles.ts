@@ -3,7 +3,7 @@ import { Colors } from "@/constants/Colors";
 
 export const styles = StyleSheet.create({
   container: {
-    paddingVertical: 10,
+    // paddingVertical: 10,
     marginLeft: 5,
   },
   dropShadow: {

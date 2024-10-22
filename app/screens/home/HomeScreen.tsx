@@ -2,15 +2,20 @@ import React from "react";
 import { ActivityIndicator, View, Text, FlatList } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useFiltersLoader } from "@/utils/filterLoader";
+import { useRestaurantsLoader } from "@/utils/restaurantLoader";
+import { useDispatch } from "react-redux";
 import { styles } from "./HomeScreen.styles";
 import Header from "@/components/header/Header";
 import RestaurantCard from "@/components/card/RestaurantCard";
 import FilterBar from "@/components/filterBar/FilterBar";
-import { useFiltersLoader } from "@/utils/filterLoader";
-import { useRestaurantsLoader } from "@/utils/restaurantLoader";
+import { selectRestaurant } from "@/redux/slices/restaurantSlice";
+import { RestaurantModel } from "@/models/apiTypes";
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
+
   const {
     filters,
     loading: filtersLoading,
@@ -22,10 +27,6 @@ const HomeScreen = () => {
     loading: restaurantsLoading,
     error: restaurantsError,
   } = useRestaurantsLoader();
-
-  const handleNavigation = () => {
-    router.push("../details/DetailsScreen");
-  };
 
   if (restaurantsLoading || filtersLoading) {
     return (
@@ -51,12 +52,21 @@ const HomeScreen = () => {
     );
   }
 
+  const handlePressRestaurant = (restaurant: RestaurantModel) => {
+    dispatch(selectRestaurant(restaurant)); //dispatch action to select restaurant
+    router.push("/screens/details/DetailsScreen");
+  };
+
+  const handleFilterPress = () => {
+    console.log("Filter Pressed!");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Header style={styles.header} />
       <FilterBar
         filters={filters}
-        handleOnPress={handleNavigation}
+        handleOnPress={handleFilterPress}
         style={styles.filterBar}
       />
       <View style={styles.list}>
@@ -68,7 +78,7 @@ const HomeScreen = () => {
           renderItem={({ item }) => (
             <RestaurantCard
               data={item}
-              handleOnPress={handleNavigation}
+              handleOnPress={() => handlePressRestaurant(item)}
               style={{ marginVertical: 10 }}
             />
           )}

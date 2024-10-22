@@ -7,15 +7,11 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.Background,
   },
   header: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 80,
+    height: 50,
+    marginVertical: 15,
     justifyContent: "center",
     alignItems: "flex-start",
     paddingHorizontal: 15,
-    zIndex: 10,
   },
   spinnerContainer: {
     flex: 1,
@@ -23,7 +19,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   filterBar: {
-    marginVertical: 20,
+    marginBottom: 10,
   },
   list: {
     height: "100%",
