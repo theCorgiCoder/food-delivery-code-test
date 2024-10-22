@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   pressable: {
+    marginTop: 5,
     height: 196,
     width: "100%",
     borderTopRightRadius: 12,

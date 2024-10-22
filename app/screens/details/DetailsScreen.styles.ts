@@ -24,4 +24,7 @@ export const styles = StyleSheet.create({
     zIndex: 20,
     marginTop: "5%",
   },
+  image: {
+    zIndex: 0,
+  },
 });

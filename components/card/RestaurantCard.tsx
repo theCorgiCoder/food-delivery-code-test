@@ -49,17 +49,23 @@ const RestaurantCard: React.FC<CardProps> = ({
           </View>
 
           <View style={styles.tags}>
-            {data.filterIds?.map((filterId) => {
+            {data.filterIds?.map((filterId, index) => {
               // Find the corresponding filter using the filterId
               const filter = Object.values(findFilters).find(
                 (f) => f.id === filterId
               );
+
+              if (!filter) return null;
+
+              // Check if it's the last item
+              const isLast = index === data.filterIds.length - 1;
+
               return (
-                filter && ( // Only render if filter exists
+                filter && (
                   <CustomText
                     key={filter.id}
                     title="subtitle"
-                    content={filter.name + " • "}
+                    content={filter.name + (!isLast ? " • " : "")}
                     color="gray"
                   />
                 )
