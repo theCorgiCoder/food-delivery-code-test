@@ -9,6 +9,7 @@ import CustomImage from "../customImage/CustomImage";
 import usePressState from "@/hooks/usePressState";
 import { Colors } from "@/constants/Colors";
 import { RestaurantModel } from "@/models/apiTypes";
+import { findFilters } from "@/constants/Filters";
 
 interface CardProps {
   data: RestaurantModel;
@@ -46,20 +47,25 @@ const RestaurantCard: React.FC<CardProps> = ({
               showRating={data.rating}
             />
           </View>
-          {/* <View>
-            {data.filters.map(
-              (
-                filter // Ensure you're using data.filters here
-              ) => (
-                <CustomText
-                  key={filter.id}
-                  title="subtitle"
-                  content={filter.name}
-                  color="gray"
-                />
-              )
-            )}
-          </View> */}
+
+          <View style={styles.tags}>
+            {data.filterIds?.map((filterId) => {
+              // Find the corresponding filter using the filterId
+              const filter = Object.values(findFilters).find(
+                (f) => f.id === filterId
+              );
+              return (
+                filter && ( // Only render if filter exists
+                  <CustomText
+                    key={filter.id}
+                    title="subtitle"
+                    content={filter.name + " • "}
+                    color="gray"
+                  />
+                )
+              );
+            })}
+          </View>
           <Clock
             textStyle={"footer1"}
             time={data.delivery_time_minutes}

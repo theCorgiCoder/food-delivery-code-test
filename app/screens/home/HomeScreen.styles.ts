@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.Background,
   },
-  content: {},
   header: {
     position: "absolute",
     top: 0,
@@ -23,8 +22,10 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  filterBar: {
+    marginVertical: 20,
+  },
   list: {
-    marginTop: "10%",
     height: "100%",
   },
 });

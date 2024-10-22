@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, View, ViewStyle } from "react-native";
 import Filter from "../filter/Filter";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FilterModel } from "@/models/apiTypes";
@@ -7,11 +7,16 @@ import { FilterModel } from "@/models/apiTypes";
 interface FilterProps {
   filters: FilterModel[];
   handleOnPress: () => void;
+  style?: ViewStyle | ViewStyle[];
 }
 
-const FilterBar: React.FC<FilterProps> = ({ handleOnPress, filters }) => {
+const FilterBar: React.FC<FilterProps> = ({
+  handleOnPress,
+  filters,
+  style,
+}) => {
   return (
-    <SafeAreaView>
+    <View style={style}>
       <FlatList
         data={filters}
         keyExtractor={(item) => item.id}
@@ -25,7 +30,7 @@ const FilterBar: React.FC<FilterProps> = ({ handleOnPress, filters }) => {
           />
         )}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

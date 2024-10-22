@@ -53,8 +53,12 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Header style={styles.header} />
-      <FilterBar filters={filters} handleOnPress={handleNavigation} /> */}
+      <Header style={styles.header} />
+      <FilterBar
+        filters={filters}
+        handleOnPress={handleNavigation}
+        style={styles.filterBar}
+      />
       <View style={styles.list}>
         <FlatList
           contentContainerStyle={{ paddingBottom: 10 }}

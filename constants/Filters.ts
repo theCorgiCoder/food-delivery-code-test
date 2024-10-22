@@ -1,4 +1,4 @@
-export const filters = {
+export const findFilters = {
   topRated: {
     id: "5c64dea3-a4ac-4151-a2e3-42e7919a925d",
     name: "Top Rated",
@@ -18,4 +18,4 @@ export const filters = {
 };
 
 // Get all filter IDs for easier reference
-export const filterIds = Object.values(filters).map((filter) => filter.id);
+export const filterIds = Object.values(findFilters).map((filter) => filter.id);
