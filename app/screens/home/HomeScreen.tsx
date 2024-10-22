@@ -1,28 +1,79 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { ActivityIndicator, View, Text, FlatList } from "react-native";
 import { useRouter } from "expo-router";
-import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./HomeScreen.styles";
 import Header from "@/components/header/Header";
-import Card from "@/components/card/Card";
+import RestaurantCard from "@/components/card/RestaurantCard";
 import FilterBar from "@/components/filterBar/FilterBar";
+import { useFiltersLoader } from "@/utils/filterLoader";
+import { useRestaurantsLoader } from "@/utils/restaurantLoader";
 
 const HomeScreen = () => {
   const router = useRouter();
+  const {
+    filters,
+    loading: filtersLoading,
+    error: filtersError,
+  } = useFiltersLoader();
+
+  const {
+    restaurants,
+    loading: restaurantsLoading,
+    error: restaurantsError,
+  } = useRestaurantsLoader();
+
   const handleNavigation = () => {
-    router.push("../details/DetailsScreen"); // Navigate to DetailsScreen
+    router.push("../details/DetailsScreen");
   };
+
+  if (restaurantsLoading || filtersLoading) {
+    return (
+      <SafeAreaView style={styles.spinnerContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </SafeAreaView>
+    );
+  }
+
+  if (restaurantsError || filtersError) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text>{restaurantsError || filtersError}</Text>
+      </SafeAreaView>
+    );
+  }
+
+  if (filters.length === 0) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text>{filtersError}</Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <Header style={styles.header} />
-      <ScrollView style={styles.content}>
-        <View style={styles.contentBox}>
-          <FilterBar />
-          <Card handleOnPress={handleNavigation} />
-        </View>
-      </ScrollView>
+      <FilterBar
+        filters={filters}
+        handleOnPress={handleNavigation}
+        style={styles.filterBar}
+      />
+      <View style={styles.list}>
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 10 }}
+          showsVerticalScrollIndicator={true}
+          data={restaurants}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <RestaurantCard
+              data={item}
+              handleOnPress={handleNavigation}
+              style={{ marginVertical: 10 }}
+            />
+          )}
+        />
+      </View>
     </SafeAreaView>
   );
 };

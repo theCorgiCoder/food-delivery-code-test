@@ -6,17 +6,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.Background,
   },
-  content: {
-    flex: 1,
-    marginTop: 15,
-    paddingHorizontal: 15,
-  },
-  contentBox: {
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 10,
-  },
   header: {
     position: "absolute",
     top: 0,
@@ -27,5 +16,16 @@ export const styles = StyleSheet.create({
     alignItems: "flex-start",
     paddingHorizontal: 15,
     zIndex: 10,
+  },
+  spinnerContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  filterBar: {
+    marginVertical: 20,
+  },
+  list: {
+    height: "100%",
   },
 });
