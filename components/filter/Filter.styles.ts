@@ -4,6 +4,7 @@ import { Colors } from "@/constants/Colors";
 export const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
+    marginLeft: 5,
   },
   dropShadow: {
     justifyContent: "flex-start",
@@ -26,7 +27,8 @@ export const styles = StyleSheet.create({
     height: 50,
   },
   text: {
-    width: 100,
-    paddingLeft: 6,
+    maxWidth: 100,
+    textAlign: "center",
+    paddingHorizontal: 10,
   },
 });
