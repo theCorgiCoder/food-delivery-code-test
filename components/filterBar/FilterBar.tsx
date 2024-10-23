@@ -1,12 +1,11 @@
 import React from "react";
-import { FlatList, View, ViewStyle } from "react-native";
+import { FlatList, TouchableOpacity, View, ViewStyle } from "react-native";
 import Filter from "../filter/Filter";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { FilterModel } from "@/models/apiTypes";
 
 interface FilterProps {
   filters: FilterModel[];
-  handleOnPress: () => void;
+  handleOnPress: (filterId: string | null) => void;
   style?: ViewStyle | ViewStyle[];
 }
 
@@ -23,11 +22,9 @@ const FilterBar: React.FC<FilterProps> = ({
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
-          <Filter
-            image={item.image_url}
-            name={item.name}
-            onPress={handleOnPress}
-          />
+          <TouchableOpacity onPress={() => handleOnPress(item.id)}>
+            <Filter image={item.image_url} name={item.name} />
+          </TouchableOpacity>
         )}
       />
     </View>

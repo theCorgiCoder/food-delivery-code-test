@@ -1,21 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ActivityIndicator, View, Text, FlatList } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFiltersLoader } from "@/utils/filterLoader";
 import { useRestaurantsLoader } from "@/utils/restaurantLoader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./HomeScreen.styles";
 import Header from "@/components/header/Header";
 import RestaurantCard from "@/components/card/RestaurantCard";
 import FilterBar from "@/components/filterBar/FilterBar";
-import { selectRestaurant } from "@/redux/slices/restaurantSlice";
+import {
+  selectRestaurant,
+  setFilter,
+  setRestaurants,
+} from "@/redux/slices/restaurantSlice";
 import { RestaurantModel } from "@/models/apiTypes";
+import { AppDispatch, RootState } from "@/redux/store";
 
 const HomeScreen = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const dispatch: AppDispatch = useDispatch();
+  const filteredRestaurants = useSelector(
+    (state: RootState) => state.restaurant.filteredRestaurants
+  );
 
   const {
     filters,
@@ -29,21 +36,11 @@ const HomeScreen = () => {
     error: restaurantsError,
   } = useRestaurantsLoader();
 
-  const handleFilterPress = (filterId: string) => {
-    // Toggle filter selection
-    if (selectedFilters.includes(filterId)) {
-      setSelectedFilters(selectedFilters.filter((id) => id !== filterId));
-    } else {
-      setSelectedFilters([...selectedFilters, filterId]);
+  useEffect(() => {
+    if (restaurants) {
+      dispatch(setRestaurants(restaurants));
     }
-  };
-
-  const filteredRestaurants =
-    selectedFilters.length === 0
-      ? restaurants
-      : restaurants.filter((restaurant) =>
-          restaurant.filterIds.some((id) => selectedFilters.includes(id))
-        );
+  }, [dispatch, restaurants]);
 
   if (restaurantsLoading || filtersLoading) {
     return (
@@ -69,7 +66,13 @@ const HomeScreen = () => {
     );
   }
 
+  const handleFilterPress = (filterId: string | null) => {
+    console.log("FILTER PRESSED");
+    dispatch(setFilter(filterId));
+  };
+
   const handlePressRestaurant = (restaurant: RestaurantModel) => {
+    console.log("CARD PRESSED");
     dispatch(selectRestaurant(restaurant)); //dispatch action to select restaurant
     router.push("/screens/details/DetailsScreen");
   };

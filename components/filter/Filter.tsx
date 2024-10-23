@@ -6,7 +6,6 @@ import CustomText from "../customText/CustomText";
 interface FilterProps {
   image: string;
   name: string;
-
   style?: ViewStyle | ViewStyle[];
 }
 
