@@ -24,15 +24,18 @@ const restaurantSlice = createSlice({
       state.filteredRestaurants = action.payload;
     },
     setFilter(state, action: PayloadAction<string | null>) {
-      state.selectedFilter = action.payload;
+      const filterId = action.payload;
 
-      if (action.payload === null) {
-        // If no filter is selected, show all restaurants
-        state.filteredRestaurants = state.restaurants;
+      // Check if the current filter is the same as the selected one
+      if (state.selectedFilter === filterId) {
+        // If the same filter is clicked again, clear the filter
+        state.selectedFilter = null;
+        state.filteredRestaurants = state.restaurants; // Show all restaurants
       } else {
-        // Filter based on selected filterId
+        // Set the new filter and apply it
+        state.selectedFilter = filterId;
         state.filteredRestaurants = state.restaurants.filter((restaurant) =>
-          restaurant.filterIds.includes(action.payload!)
+          restaurant.filterIds.includes(filterId!)
         );
       }
     },

@@ -67,13 +67,11 @@ const HomeScreen = () => {
   }
 
   const handleFilterPress = (filterId: string | null) => {
-    console.log("FILTER PRESSED");
     dispatch(setFilter(filterId));
   };
 
   const handlePressRestaurant = (restaurant: RestaurantModel) => {
-    console.log("CARD PRESSED");
-    dispatch(selectRestaurant(restaurant)); //dispatch action to select restaurant
+    dispatch(selectRestaurant(restaurant));
     router.push("/screens/details/DetailsScreen");
   };
 

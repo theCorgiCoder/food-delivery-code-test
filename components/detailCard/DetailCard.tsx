@@ -3,41 +3,45 @@ import { ActivityIndicator, View } from "react-native";
 import { styles } from "./DetailCard.style";
 import CustomText from "../customText/CustomText";
 import { RestaurantModel } from "@/models/apiTypes";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import { fetchOpenStatus } from "@/utils/openService";
 import { Colors } from "@/constants/Colors";
+import { findFilters } from "@/constants/Filters";
 
 interface DetailCardProps {
   details: RestaurantModel | null;
 }
 
 const DetailCard: React.FC<DetailCardProps> = ({ details }) => {
-  const filters = useSelector((state: RootState) => state.filters.filters);
-
   const [isCurrentlyOpen, setIsCurrentlyOpen] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (details?.id) {
-      // Fetch the open status for the restaurant
-      const fetchStatus = async () => {
+    const fetchStatus = async () => {
+      if (details?.id) {
         const status = await fetchOpenStatus(details.id);
         setIsCurrentlyOpen(status);
-        setLoading(false);
-      };
-      fetchStatus();
-    }
-  }, [details?.id]);
+      }
+      setLoading(false);
+    };
+
+    fetchStatus();
+  }, [details]);
 
   // If loading or no details available yet, show a loader
   if (loading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return (
+      <View style={styles.loaderContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 
   const filterNames = details?.filterIds
-    ?.map((filterId) => filters.find((filter) => filter.id === filterId)?.name)
-    .filter(Boolean) // Remove any undefined values if filterIds don't match
+    ?.map((filterId) => {
+      // Find the filter object that matches the filterId
+      const filter = Object.values(findFilters).find((f) => f.id === filterId);
+      return filter ? filter.name : null;
+    })
     .join(" • ");
 
   return (

@@ -1,39 +1,17 @@
-import { View, Text, SafeAreaView } from "react-native";
-import { useRouter } from "expo-router";
+import { View, SafeAreaView, ViewStyle } from "react-native";
 import CustomImage from "@/components/customImage/CustomImage";
 import DetailCard from "@/components/detailCard/DetailCard";
 import { styles } from "./DetailsScreen.styles";
 import BackIcon from "../../../assets/images/backIcon.svg";
 import CustomButton from "@/components/button/CustomButton";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { clearSelectedRestaurant } from "@/redux/slices/restaurantSlice";
+import { useSelector } from "react-redux";
+import { router } from "expo-router";
 
-// interface DetailScreenProps {
-//   image: string;
-//   handleOnPress: () => void;
-//   style?: ViewStyle | ViewStyle[];
-// }
-
-const DetailsScreen = () => {
-  const router = useRouter();
-  const dispatch = useDispatch();
-
+const DetailsScreen = ({}) => {
   const selectedRestaurant = useSelector(
-    (state: RootState) => state.restaurant.selected
+    (state: RootState) => state.restaurant.selectedRestaurant
   );
-  const handleBackPress = () => {
-    dispatch(clearSelectedRestaurant()); // Clear the selected restaurant when navigating back
-    router.back(); // Navigate back
-  };
-
-  if (!selectedRestaurant) {
-    return (
-      <View style={styles.container}>
-        <Text>No restaurant selected</Text>
-      </View>
-    );
-  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.banner}>
@@ -42,10 +20,10 @@ const DetailsScreen = () => {
             width={30}
             height={30}
             icon={BackIcon}
-            onPress={handleBackPress}
+            onPress={() => router.back()}
           />
         </View>
-        <CustomImage image={selectedRestaurant.image_url} />
+        <CustomImage image={selectedRestaurant?.image_url} />
       </View>
       <View style={styles.content}>
         <DetailCard details={selectedRestaurant} />
