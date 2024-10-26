@@ -32,4 +32,10 @@ export const styles = StyleSheet.create({
     paddingLeft: 5,
     textAlign: "center",
   },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: Colors.Selected,
+    opacity: 0.5,
+    borderRadius: 25,
+  },
 });

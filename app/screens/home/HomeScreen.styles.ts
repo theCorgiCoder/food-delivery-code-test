@@ -24,4 +24,7 @@ export const styles = StyleSheet.create({
   list: {
     height: "100%",
   },
+  footer: {
+    height: 150,
+  },
 });

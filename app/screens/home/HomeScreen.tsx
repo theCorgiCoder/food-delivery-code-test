@@ -20,10 +20,16 @@ import { AppDispatch, RootState } from "@/redux/store";
 const HomeScreen = () => {
   const router = useRouter();
   const dispatch: AppDispatch = useDispatch();
+
+  //Selectors for filtered restaurants and selected filter
   const filteredRestaurants = useSelector(
     (state: RootState) => state.restaurant.filteredRestaurants
   );
+  const selectedFilter = useSelector(
+    (state: RootState) => state.restaurant.selectedFilters
+  );
 
+  //Loaders for filters and restaurants
   const {
     filters,
     loading: filtersLoading,
@@ -36,12 +42,26 @@ const HomeScreen = () => {
     error: restaurantsError,
   } = useRestaurantsLoader();
 
+  //Dispatch restaurants to Redux state
   useEffect(() => {
     if (restaurants) {
       dispatch(setRestaurants(restaurants));
     }
   }, [dispatch, restaurants]);
 
+  //Handle filter and restaurant press
+  const handleFilterPress = (filterId: string | null) => {
+    if (filterId) {
+      dispatch(setFilter(filterId));
+    }
+  };
+
+  const handlePressRestaurant = (restaurant: RestaurantModel) => {
+    dispatch(selectRestaurant(restaurant));
+    router.push("/screens/details/DetailsScreen");
+  };
+
+  //Loading and error handling
   if (restaurantsLoading || filtersLoading) {
     return (
       <SafeAreaView style={styles.spinnerContainer}>
@@ -66,39 +86,36 @@ const HomeScreen = () => {
     );
   }
 
-  const handleFilterPress = (filterId: string | null) => {
-    dispatch(setFilter(filterId));
-  };
-
-  const handlePressRestaurant = (restaurant: RestaurantModel) => {
-    dispatch(selectRestaurant(restaurant));
-    router.push("/screens/details/DetailsScreen");
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <Header style={styles.header} />
+
       <FilterBar
         filters={filters}
         handleOnPress={handleFilterPress}
         style={styles.filterBar}
       />
-      <View style={styles.list}>
-        <FlatList
-          contentContainerStyle={{ paddingBottom: 10 }}
-          showsVerticalScrollIndicator={true}
-          data={filteredRestaurants}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <RestaurantCard
-              data={item}
-              handleOnPress={() => handlePressRestaurant(item)}
-              style={{ marginVertical: 10 }}
-            />
-          )}
-          ListFooterComponent={<View style={{ height: 100 }} />}
-        />
-      </View>
+
+      {filteredRestaurants.length === 0 ? (
+        <Text>No restaurants found.</Text>
+      ) : (
+        <View style={styles.list}>
+          <FlatList
+            contentContainerStyle={{ paddingBottom: 10 }}
+            showsVerticalScrollIndicator={true}
+            data={filteredRestaurants}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <RestaurantCard
+                data={item}
+                handleOnPress={() => handlePressRestaurant(item)}
+                style={{ marginVertical: 10 }}
+              />
+            )}
+            ListFooterComponent={<View style={styles.footer} />}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 };

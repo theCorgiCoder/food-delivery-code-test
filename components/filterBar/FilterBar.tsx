@@ -2,6 +2,9 @@ import React from "react";
 import { FlatList, TouchableOpacity, View, ViewStyle } from "react-native";
 import Filter from "../filter/Filter";
 import { FilterModel } from "@/models/apiTypes";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
+import { styles } from "./FilterBar.styles";
 
 interface FilterProps {
   filters: FilterModel[];
@@ -14,6 +17,10 @@ const FilterBar: React.FC<FilterProps> = ({
   filters,
   style,
 }) => {
+  const selectedFilter = useSelector(
+    (state: RootState) => state.restaurant.selectedFilters
+  );
+
   return (
     <View style={style}>
       <FlatList
@@ -21,11 +28,18 @@ const FilterBar: React.FC<FilterProps> = ({
         keyExtractor={(item) => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => handleOnPress(item.id)}>
-            <Filter image={item.image_url} name={item.name} />
-          </TouchableOpacity>
-        )}
+        renderItem={({ item }) => {
+          const isSelected = selectedFilter.includes(item.id);
+          return (
+            <Filter
+              image={item.image_url}
+              name={item.name}
+              id={item.id}
+              isSelected={isSelected}
+              onPress={handleOnPress}
+            />
+          );
+        }}
       />
     </View>
   );
