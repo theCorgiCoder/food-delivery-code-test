@@ -9,10 +9,14 @@ interface Filter {
 
 interface FiltersState {
   filters: Filter[];
+  filtersLoading: boolean;
+  filtersError: string | null;
 }
 
 const initialState: FiltersState = {
-  filters: [], // Initialize with an empty array
+  filters: [],
+  filtersLoading: false,
+  filtersError: null,
 };
 
 const filtersSlice = createSlice({
@@ -21,10 +25,21 @@ const filtersSlice = createSlice({
   reducers: {
     setFilters(state, action: PayloadAction<Filter[]>) {
       state.filters = action.payload;
+      state.filtersLoading = false;
+      state.filtersError = null;
+    },
+
+    setFiltersLoading(state, action: PayloadAction<boolean>) {
+      state.filtersLoading = action.payload;
+    },
+
+    setFiltersError(state, action: PayloadAction<string | null>) {
+      state.filtersError = action.payload;
     },
   },
 });
 
 // Export actions and reducer
-export const { setFilters } = filtersSlice.actions;
+export const { setFilters, setFiltersLoading, setFiltersError } =
+  filtersSlice.actions;
 export default filtersSlice.reducer;

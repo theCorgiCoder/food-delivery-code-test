@@ -4,8 +4,8 @@ import { styles } from "./DetailCard.style";
 import CustomText from "../customText/CustomText";
 import { RestaurantModel } from "@/models/apiTypes";
 import { fetchOpenStatus } from "@/utils/openService";
-import { Colors } from "@/constants/Colors";
-import { findFilters } from "@/constants/Filters";
+import { Colors } from "@/constants/colors";
+import { findFilters } from "@/constants/filters";
 
 interface DetailCardProps {
   details: RestaurantModel | null;

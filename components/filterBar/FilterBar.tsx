@@ -1,10 +1,9 @@
 import React from "react";
-import { FlatList, TouchableOpacity, View, ViewStyle } from "react-native";
+import { FlatList, View, ViewStyle } from "react-native";
 import Filter from "../filter/Filter";
 import { FilterModel } from "@/models/apiTypes";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
-import { styles } from "./FilterBar.styles";
 
 interface FilterProps {
   filters: FilterModel[];

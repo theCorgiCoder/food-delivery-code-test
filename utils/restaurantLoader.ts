@@ -24,26 +24,3 @@ export const useRestaurantsLoader = () => {
 
   return { restaurants, loading, error };
 };
-
-// export const useRestaurantsLoader = () => {
-//   const [restaurants, setRestaurants] = useState<RestaurantModel[]>([]);
-//   const [loading, setLoading] = useState<boolean>(true);
-//   const [error, setError] = useState<string | null>(null);
-
-//   useEffect(() => {
-//     const loadRestaurants = async () => {
-//       try {
-//         const fetchedRestaurants = await fetchRestaurants();
-//         setRestaurants(fetchedRestaurants);
-//       } catch (err) {
-//         setError("Failed to load restaurants");
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     loadRestaurants();
-//   }, []);
-
-//   return { restaurants, loading, error };
-// };

@@ -6,10 +6,8 @@ import Rating from "../rating/Rating";
 import StarIcon from "@/assets/images/starIcon.svg";
 import Clock from "../clock/Clock";
 import CustomImage from "../customImage/CustomImage";
-import usePressState from "@/hooks/usePressState";
-import { Colors } from "@/constants/Colors";
 import { RestaurantModel } from "@/models/apiTypes";
-import { findFilters } from "@/constants/Filters";
+import { findFilters } from "@/constants/filters";
 
 interface CardProps {
   data: RestaurantModel;

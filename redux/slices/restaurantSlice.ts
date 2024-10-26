@@ -6,6 +6,8 @@ interface RestaurantState {
   filteredRestaurants: RestaurantModel[];
   selectedRestaurant: RestaurantModel | null;
   selectedFilters: string[];
+  restaurantLoading: boolean;
+  restaurantError: string | null;
 }
 
 const initialState: RestaurantState = {
@@ -13,6 +15,8 @@ const initialState: RestaurantState = {
   restaurants: [],
   filteredRestaurants: [],
   selectedFilters: [],
+  restaurantLoading: false,
+  restaurantError: null,
 };
 
 const restaurantSlice = createSlice({
@@ -23,31 +27,11 @@ const restaurantSlice = createSlice({
       state.restaurants = action.payload;
       state.filteredRestaurants = action.payload;
     },
-    // setFilter(state, action: PayloadAction<string | null>) {
-    //   const filterId = action.payload;
 
-    //   if (filterId === null) {
-    //     //clears selected filter
-    //     state.filteredRestaurants = state.restaurants;
-    //     state.selectedFilters = [];
-    //   } else if (state.selectedFilters.includes(filterId)) {
-    //     // If the same filter is clicked again, clear the filter
-    //     state.selectedFilters = state.selectedFilters.filter(
-    //       (id) => id !== filterId
-    //     );
-    //     state.filteredRestaurants = state.restaurants.filter((restaurant) =>
-    //       restaurant.filterIds.some((id) => state.selectedFilters.includes(id))
-    //     );
-    //   } else {
-    //     // Add new filter to selected filters
-    //     state.selectedFilters.push(filterId);
-    //     state.filteredRestaurants = state.restaurants.filter((restaurant) =>
-    //       restaurant.filterIds.includes(filterId)
-    //     );
-    //   }
-    // },
     setFilter(state, action: PayloadAction<string>) {
       const filterId = action.payload;
+
+      console.log("Current selected filters:", state.selectedFilters);
 
       if (state.selectedFilters.includes(filterId)) {
         // If the filter is already selected, remove it
@@ -59,24 +43,47 @@ const restaurantSlice = createSlice({
         state.selectedFilters.push(filterId);
       }
 
+      console.log("Updated selected filters:", state.selectedFilters);
+
       // Update filteredRestaurants based on selectedFilters
       if (state.selectedFilters.length > 0) {
-        state.filteredRestaurants = state.restaurants.filter((restaurant) =>
-          restaurant.filterIds.some((id) => state.selectedFilters.includes(id))
-        );
+        state.filteredRestaurants = state.restaurants.filter((restaurant) => {
+          const matches = restaurant.filterIds.some((id) =>
+            state.selectedFilters.includes(id)
+          );
+          console.log(`Restaurant ${restaurant.name} matches:`, matches); // Log matching status
+          return matches;
+        });
       } else {
-        state.filteredRestaurants = state.restaurants; // Show all restaurants if no filters are selected
+        state.filteredRestaurants = state.restaurants; // Show all if no filters selected
       }
     },
 
     selectRestaurant(state, action: PayloadAction<RestaurantModel | null>) {
       state.selectedRestaurant = action.payload;
     },
+
+    clearError(state) {
+      state.restaurantError = null;
+    },
+
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.restaurantLoading = action.payload;
+    },
+
+    setError(state, action: PayloadAction<string | null>) {
+      state.restaurantError = action.payload;
+    },
   },
 });
 
-export const { setRestaurants, setFilter, selectRestaurant } =
-  restaurantSlice.actions;
+export const {
+  setRestaurants,
+  setFilter,
+  selectRestaurant,
+  clearError,
+  setLoading,
+  setError,
+} = restaurantSlice.actions;
 
-// Export reducer
 export default restaurantSlice.reducer;

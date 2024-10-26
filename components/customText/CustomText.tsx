@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ViewStyle } from "react-native";
-import { titleStyle } from "@/constants/Font";
+import { titleStyle } from "@/constants/font";
 import { styles } from "./CustomText.styles";
 
 interface TextProps {

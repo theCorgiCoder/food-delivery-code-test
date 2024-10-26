@@ -2,6 +2,10 @@ export interface FilterModel {
   id: string;
   name: string;
   image_url: string;
+  error: {
+    error: boolean;
+    message: string;
+  };
 }
 
 export interface RestaurantModel {
@@ -12,6 +16,10 @@ export interface RestaurantModel {
   image_url: string;
   delivery_time_minutes: number;
   filters?: FilterModel[];
+  error: {
+    error: boolean;
+    message: string;
+  };
 }
 
 // Redux state for restaurants

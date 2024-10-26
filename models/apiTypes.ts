@@ -15,6 +15,11 @@ export interface RestaurantModel {
   filters?: FilterModel[];
 }
 
+export interface ErrorMsg {
+  error: boolean;
+  message: string;
+}
+
 export interface openStatusModel {
   restaurant_id: string;
   is_currently_open: boolean;
