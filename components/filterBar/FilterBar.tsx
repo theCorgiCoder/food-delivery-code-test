@@ -1,12 +1,14 @@
 import React from "react";
-import { FlatList, View, ViewStyle } from "react-native";
+import { FlatList, TouchableOpacity, View, ViewStyle } from "react-native";
 import Filter from "../filter/Filter";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { FilterModel } from "@/models/apiTypes";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
+import { styles } from "./FilterBar.styles";
 
 interface FilterProps {
   filters: FilterModel[];
-  handleOnPress: () => void;
+  handleOnPress: (filterId: string | null) => void;
   style?: ViewStyle | ViewStyle[];
 }
 
@@ -15,6 +17,10 @@ const FilterBar: React.FC<FilterProps> = ({
   filters,
   style,
 }) => {
+  const selectedFilter = useSelector(
+    (state: RootState) => state.restaurant.selectedFilters
+  );
+
   return (
     <View style={style}>
       <FlatList
@@ -22,13 +28,18 @@ const FilterBar: React.FC<FilterProps> = ({
         keyExtractor={(item) => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <Filter
-            image={item.image_url}
-            name={item.name}
-            onPress={handleOnPress}
-          />
-        )}
+        renderItem={({ item }) => {
+          const isSelected = selectedFilter.includes(item.id);
+          return (
+            <Filter
+              image={item.image_url}
+              name={item.name}
+              id={item.id}
+              isSelected={isSelected}
+              onPress={handleOnPress}
+            />
+          );
+        }}
       />
     </View>
   );

@@ -1,36 +1,34 @@
-import { View, ViewStyle } from "react-native";
-import { useRouter } from "expo-router";
+import { View, SafeAreaView, ViewStyle } from "react-native";
 import CustomImage from "@/components/customImage/CustomImage";
 import DetailCard from "@/components/detailCard/DetailCard";
 import { styles } from "./DetailsScreen.styles";
 import BackIcon from "../../../assets/images/backIcon.svg";
 import CustomButton from "@/components/button/CustomButton";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
+import { router } from "expo-router";
 
-interface DetailScreenProps {
-  image: string;
-  handleOnPress: () => void;
-  style?: ViewStyle | ViewStyle[];
-}
-
-const DetailsScreen: React.FC<DetailScreenProps> = ({ image }) => {
-  const router = useRouter();
-
+const DetailsScreen = ({}) => {
+  const selectedRestaurant = useSelector(
+    (state: RootState) => state.restaurant.selectedRestaurant
+  );
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.banner}>
-        <CustomButton
-          width={30}
-          height={30}
-          icon={BackIcon}
-          onPress={() => router.back()}
-          style={styles.button}
-        />
-        <CustomImage image={image} style={styles.image} />
+        <View style={styles.button}>
+          <CustomButton
+            width={30}
+            height={30}
+            icon={BackIcon}
+            onPress={() => router.back()}
+          />
+        </View>
+        <CustomImage image={selectedRestaurant?.image_url} />
       </View>
       <View style={styles.content}>
-        <DetailCard />
+        <DetailCard details={selectedRestaurant} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

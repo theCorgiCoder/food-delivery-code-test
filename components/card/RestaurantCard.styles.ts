@@ -6,23 +6,27 @@ export const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 15,
   },
+  imageCorners: {
+    borderTopRightRadius: 12,
+    borderTopLeftRadius: 12,
+  },
   pressable: {
-    marginTop: 5,
-    height: 196,
+    marginVertical: 6,
+    height: 200,
     width: "100%",
     borderTopRightRadius: 12,
     borderTopLeftRadius: 12,
     shadowColor: Colors.Black,
     shadowOffset: {
       width: 1,
-      height: 1,
+      height: 10,
     },
     shadowOpacity: 0.2,
-    shadowRadius: 3,
+    shadowRadius: 5,
   },
   contentBox: {
     padding: 8,
-    justifyContent: "flex-end",
+    justifyContent: "space-around",
     backgroundColor: Colors.White,
   },
   title: {
@@ -32,5 +36,6 @@ export const styles = StyleSheet.create({
   tags: {
     width: "100%",
     flexDirection: "row",
+    paddingVertical: 2,
   },
 });

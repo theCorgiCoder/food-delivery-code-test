@@ -22,19 +22,10 @@ const RestaurantCard: React.FC<CardProps> = ({
   handleOnPress,
   style,
 }) => {
-  const { handlePressIn, handlePressOut, backgroundColor } = usePressState(
-    Colors.White
-  );
-
   return (
     <View style={[styles.container, style]}>
-      <TouchableOpacity
-        onPress={handleOnPress}
-        style={[styles.pressable, { backgroundColor }]}
-        onPressIn={handlePressIn}
-        onPressOut={handlePressOut}
-      >
-        <CustomImage image={data.image_url} />
+      <TouchableOpacity onPress={handleOnPress} style={styles.pressable}>
+        <CustomImage image={data.image_url} style={styles.imageCorners} />
         <View style={styles.contentBox}>
           <View style={styles.title}>
             <CustomText title={"title1"} content={data.name} color={"black"} />

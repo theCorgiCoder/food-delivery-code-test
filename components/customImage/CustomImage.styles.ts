@@ -4,8 +4,6 @@ export const styles = StyleSheet.create({
   container: {
     height: "70%",
     width: "100%",
-    borderTopRightRadius: 12,
-    borderTopLeftRadius: 12,
     overflow: "hidden",
   },
   image: {
