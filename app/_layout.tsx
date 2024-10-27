@@ -18,9 +18,7 @@ export default function RootLayout() {
   return (
     <Provider store={store}>
       <ErrorComponent />
-      {/* <ErrorMessage message={errorMessage} /> */}
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
         <Stack.Screen name="screens/home/HomeScreen" />
         <Stack.Screen name="screens/details/DetailsScreen" />
       </Stack>

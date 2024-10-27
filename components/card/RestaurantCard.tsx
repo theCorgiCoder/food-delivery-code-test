@@ -39,7 +39,6 @@ const RestaurantCard: React.FC<CardProps> = ({
 
           <View style={styles.tags}>
             {data.filterIds?.map((filterId, index) => {
-              // Find the corresponding filter using the filterId
               const filter = Object.values(findFilters).find(
                 (f) => f.id === filterId
               );

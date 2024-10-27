@@ -1,17 +1,6 @@
-// redux/slices/filtersSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Filter {
-  id: string;
-  name: string;
-  image_url: string;
-}
-
-interface FiltersState {
-  filters: Filter[];
-  filtersLoading: boolean;
-  filtersError: string | null;
-}
+import { FiltersState } from "../types";
+import { FilterModel } from "@/models/apiTypes";
 
 const initialState: FiltersState = {
   filters: [],
@@ -23,7 +12,7 @@ const filtersSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    setFilters(state, action: PayloadAction<Filter[]>) {
+    setFilters(state, action: PayloadAction<FilterModel[]>) {
       state.filters = action.payload;
       state.filtersLoading = false;
       state.filtersError = null;
@@ -39,7 +28,6 @@ const filtersSlice = createSlice({
   },
 });
 
-// Export actions and reducer
 export const { setFilters, setFiltersLoading, setFiltersError } =
   filtersSlice.actions;
 export default filtersSlice.reducer;

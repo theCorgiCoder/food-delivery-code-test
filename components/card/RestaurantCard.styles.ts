@@ -19,10 +19,10 @@ export const styles = StyleSheet.create({
     shadowColor: Colors.Black,
     shadowOffset: {
       width: 1,
-      height: 10,
+      height: 2,
     },
     shadowOpacity: 0.2,
-    shadowRadius: 5,
+    shadowRadius: 3,
   },
   contentBox: {
     padding: 8,

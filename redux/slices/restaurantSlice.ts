@@ -1,14 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RestaurantModel } from "@/models/apiTypes";
-
-interface RestaurantState {
-  restaurants: RestaurantModel[];
-  filteredRestaurants: RestaurantModel[];
-  selectedRestaurant: RestaurantModel | null;
-  selectedFilters: string[];
-  restaurantLoading: boolean;
-  restaurantError: string | null;
-}
+import { RestaurantState } from "../types";
 
 const initialState: RestaurantState = {
   selectedRestaurant: null,
@@ -31,8 +23,6 @@ const restaurantSlice = createSlice({
     setFilter(state, action: PayloadAction<string>) {
       const filterId = action.payload;
 
-      console.log("Current selected filters:", state.selectedFilters);
-
       if (state.selectedFilters.includes(filterId)) {
         // If the filter is already selected, remove it
         state.selectedFilters = state.selectedFilters.filter(
@@ -43,20 +33,20 @@ const restaurantSlice = createSlice({
         state.selectedFilters.push(filterId);
       }
 
-      console.log("Updated selected filters:", state.selectedFilters);
-
       // Update filteredRestaurants based on selectedFilters
-      if (state.selectedFilters.length > 0) {
-        state.filteredRestaurants = state.restaurants.filter((restaurant) => {
-          const matches = restaurant.filterIds.some((id) =>
-            state.selectedFilters.includes(id)
-          );
-          console.log(`Restaurant ${restaurant.name} matches:`, matches); // Log matching status
-          return matches;
-        });
-      } else {
-        state.filteredRestaurants = state.restaurants; // Show all if no filters selected
-      }
+      state.filteredRestaurants =
+        state.selectedFilters.length > 0
+          ? state.restaurants.filter((restaurant) =>
+              restaurant.filterIds.some((id) =>
+                state.selectedFilters.includes(id)
+              )
+            )
+          : state.restaurants; // Show all if no filters selected
+    },
+
+    clearFilters(state) {
+      state.selectedFilters = [];
+      state.filteredRestaurants = state.restaurants;
     },
 
     selectRestaurant(state, action: PayloadAction<RestaurantModel | null>) {
@@ -82,6 +72,7 @@ export const {
   setFilter,
   selectRestaurant,
   clearError,
+  clearFilters,
   setLoading,
   setError,
 } = restaurantSlice.actions;

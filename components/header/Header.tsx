@@ -1,6 +1,5 @@
 import { View, Text, Button, StyleProp, ViewStyle } from "react-native";
 import { useRouter } from "expo-router";
-import { styles } from "./Header.styles";
 import Logo from "@/assets/images/Logo.svg";
 
 interface HeaderProps {

@@ -1,8 +1,14 @@
 //Define types of data from API
+export interface ErrorModel {
+  error: boolean;
+  message: string;
+}
+
 export interface FilterModel {
   id: string;
   name: string;
   image_url: string;
+  error: ErrorModel;
 }
 
 export interface RestaurantModel {
@@ -13,21 +19,12 @@ export interface RestaurantModel {
   image_url: string;
   delivery_time_minutes: number;
   filters?: FilterModel[];
-}
-
-export interface ErrorMsg {
-  error: boolean;
-  message: string;
+  error: ErrorModel;
 }
 
 export interface openStatusModel {
   restaurant_id: string;
   is_currently_open: boolean;
-}
-
-export interface openErrorModel {
-  error: boolean;
-  reason: string;
 }
 
 export interface OpenModel {

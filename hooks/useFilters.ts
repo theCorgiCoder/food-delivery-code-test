@@ -4,7 +4,7 @@ import { BASE_URL } from "@/constants/urls";
 import { FilterModel } from "@/models/apiTypes";
 import { filterIds } from "@/constants/filters";
 
-// Function to fetch a filter by its ID
+// Fetch a filter by its ID
 const fetchFilterById = async (id: string): Promise<FilterModel | null> => {
   try {
     const response = await fetch(`${BASE_URL}filter/${id}`);
@@ -28,7 +28,7 @@ const fetchFilterById = async (id: string): Promise<FilterModel | null> => {
   }
 };
 
-// Custom hook to load filters
+//Load filters
 export const useFilters = () => {
   const [filters, setFilters] = useState<FilterModel[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -36,24 +36,23 @@ export const useFilters = () => {
 
   useEffect(() => {
     const fetchFilters = async () => {
-      setLoading(true); // Set loading to true at the start
+      setLoading(true);
 
       try {
         const fetchedFilters = await Promise.all(
           filterIds.map(async (id) => await fetchFilterById(id))
         );
 
-        // Filter out any null values from fetchedFilters
         setFilters(
           fetchedFilters.filter(
             (filter): filter is FilterModel => filter !== null
           )
         );
-        setError(null); // Clear error on successful fetch
+        setError(null);
       } catch (err) {
-        setError("Failed to load filters"); // Set error message
+        setError("Failed to load filters");
       } finally {
-        setLoading(false); // Set loading to false at the end
+        setLoading(false);
       }
     };
 

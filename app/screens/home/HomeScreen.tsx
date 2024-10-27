@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ActivityIndicator, View, Text, FlatList } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -9,18 +9,10 @@ import RestaurantCard from "@/components/card/RestaurantCard";
 import FilterBar from "@/components/filterBar/FilterBar";
 import {
   selectRestaurant,
-  setLoading,
-  setRestaurants,
-  setError,
   setFilter,
+  clearFilters,
 } from "@/redux/slices/restaurantSlice";
-import {
-  setFilters,
-  setFiltersError,
-  setFiltersLoading,
-} from "@/redux/slices/filterSlice";
 import { RestaurantModel } from "@/models/apiTypes";
-import { FilterModel } from "@/redux/types";
 import { RootState } from "@/redux/store";
 import useFetchRestaurantsAndFilters from "@/hooks/useRestaurants";
 import { useFilters } from "@/hooks/useFilters";
@@ -30,20 +22,12 @@ import { Colors } from "@/constants/colors";
 const HomeScreen = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const {
-    restaurants,
-    loading: restaurantLoading,
-    error: restaurantError,
-  } = useRestaurants();
+  const { restaurants, loading: restaurantLoading } = useRestaurants();
   const filteredRestaurants = useSelector(
     (state: RootState) => state.restaurant.filteredRestaurants
   );
 
-  const {
-    filters,
-    loading: filtersLoading,
-    error: filtersError,
-  } = useFilters();
+  const { filters, loading: filtersLoading } = useFilters();
   useFetchRestaurantsAndFilters();
 
   const handleFilterPress = (filterId: string | null) => {
@@ -53,6 +37,7 @@ const HomeScreen = () => {
   };
 
   const handlePressRestaurant = (restaurant: RestaurantModel) => {
+    dispatch(clearFilters());
     dispatch(selectRestaurant(restaurant));
     router.push("/screens/details/DetailsScreen");
   };

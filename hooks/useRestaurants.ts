@@ -9,7 +9,7 @@ import {
 import { BASE_URL } from "@/constants/urls";
 import { RootState } from "@/redux/store";
 
-const useFetchRestaurantsAndFilters = () => {
+const useRestaurants = () => {
   const dispatch = useDispatch();
   const restaurants = useSelector(
     (state: RootState) => state.restaurant.restaurants
@@ -50,4 +50,4 @@ const useFetchRestaurantsAndFilters = () => {
   return { restaurants, loading, error };
 };
 
-export default useFetchRestaurantsAndFilters;
+export default useRestaurants;

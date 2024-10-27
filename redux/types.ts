@@ -1,33 +1,19 @@
-export interface FilterModel {
-  id: string;
-  name: string;
-  image_url: string;
-  error: {
-    error: boolean;
-    message: string;
-  };
-}
-
-export interface RestaurantModel {
-  id: string;
-  name: string;
-  rating: number;
-  filterIds: string[];
-  image_url: string;
-  delivery_time_minutes: number;
-  filters?: FilterModel[];
-  error: {
-    error: boolean;
-    message: string;
-  };
-}
+import { RestaurantModel, FilterModel } from "@/models/apiTypes";
 
 // Redux state for restaurants
 export interface RestaurantState {
   restaurants: RestaurantModel[];
   filteredRestaurants: RestaurantModel[];
-  selectedFilter: string | null;
   selectedRestaurant: RestaurantModel | null;
+  selectedFilters: string[];
+  restaurantLoading: boolean;
+  restaurantError: string | null;
+}
+
+export interface FiltersState {
+  filters: FilterModel[];
+  filtersLoading: boolean;
+  filtersError: string | null;
 }
 
 //Action Types
