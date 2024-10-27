@@ -17,7 +17,7 @@ import { RootState } from "@/redux/store";
 import useFetchRestaurantsAndFilters from "@/hooks/useRestaurants";
 import { useFilters } from "@/hooks/useFilters";
 import useRestaurants from "@/hooks/useRestaurants";
-import { Colors } from "@/constants/colors";
+import { colors } from "@/constants/colors";
 
 const HomeScreen = () => {
   const router = useRouter();
@@ -45,7 +45,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       {filtersLoading || restaurantLoading ? (
-        <ActivityIndicator size="large" color={Colors.Selected} />
+        <ActivityIndicator size="large" color={colors.Selected} />
       ) : (
         <>
           <Header style={styles.header} />

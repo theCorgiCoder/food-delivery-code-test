@@ -21,7 +21,7 @@ to learn more about using it as a state management library.
 
 I think the most difficult part of this project was figuring out how to properly incorporate Redux for the API management and setting up the filter button logic properly. It was very easy for the code to get quite messy so I took some extra time to clean up the code to make it more manageable. I didn't want the screen pages to be littered with so much code if I could help it.
 
-I am most proud of the filter buttons, it was important that users were able to understand when a filtere was active and that multiple could be pressed at once.
+I am most proud of the filter buttons, it was important that users were able to understand when a filter was active and that multiple could be pressed at once.
 
 ## Getting Started
 

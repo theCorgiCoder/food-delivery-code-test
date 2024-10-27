@@ -63,8 +63,8 @@ const RestaurantCard: React.FC<CardProps> = ({
           <Clock
             textStyle={"footer1"}
             time={data.delivery_time_minutes}
-            width={15}
-            height={15}
+            width={13}
+            height={13}
             textColor={"grey"}
           />
         </View>

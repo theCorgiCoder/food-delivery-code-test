@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Colors } from "@/constants/colors";
+import { colors } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
     height: 140,
     width: "100%",
     borderRadius: 12,
-    backgroundColor: Colors.White,
-    shadowColor: Colors.Black,
+    backgroundColor: colors.White,
+    shadowColor: colors.Black,
     shadowOffset: {
       width: 1,
       height: 1,

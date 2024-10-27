@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Colors } from "@/constants/colors";
+import { colors } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
     maxWidth: 150,
     borderRadius: 25,
     marginHorizontal: 5,
-    backgroundColor: Colors.Background,
-    shadowColor: Colors.Black,
+    backgroundColor: colors.Background,
+    shadowColor: colors.Black,
     shadowOffset: {
       width: 1,
       height: 1,
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: Colors.Selected,
+    backgroundColor: colors.Selected,
     opacity: 0.5,
     borderRadius: 25,
   },

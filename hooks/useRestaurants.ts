@@ -33,9 +33,9 @@ const useRestaurants = () => {
         const data = await response.json();
         dispatch(setRestaurants(data.restaurants));
         dispatch(setError(null));
-      } catch (err) {
-        if (err instanceof Error) {
-          dispatch(setError(err.message));
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          dispatch(setError(error.message));
         } else {
           dispatch(setError("An unknown error occurred."));
         }

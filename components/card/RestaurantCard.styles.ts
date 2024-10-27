@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Colors } from "@/constants/colors";
+import { colors } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     borderTopRightRadius: 12,
     borderTopLeftRadius: 12,
-    shadowColor: Colors.Black,
+    shadowColor: colors.Black,
     shadowOffset: {
       width: 1,
       height: 2,
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
   contentBox: {
     padding: 8,
     justifyContent: "space-around",
-    backgroundColor: Colors.White,
+    backgroundColor: colors.White,
   },
   title: {
     justifyContent: "space-between",

@@ -1,4 +1,4 @@
-export const Colors = {
+export const colors = {
   Black: "#1F2B2E",
   White: "#FFFFFF",
   Grey: "#999999",
@@ -11,18 +11,18 @@ export const Colors = {
 export const getTextColor = (color: string) => {
   switch (color) {
     case "black":
-      return { color: Colors.Black };
+      return { color: colors.Black };
     case "white":
-      return { color: Colors.White };
+      return { color: colors.White };
     case "grey":
-      return { color: Colors.Grey };
+      return { color: colors.Grey };
     case "selected":
-      return { color: Colors.Selected };
+      return { color: colors.Selected };
     case "positive":
-      return { color: Colors.Positive };
+      return { color: colors.Positive };
     case "negative":
-      return { color: Colors.Negative };
+      return { color: colors.Negative };
     default:
-      return { color: Colors.Black };
+      return { color: colors.Black };
   }
 };

@@ -4,7 +4,7 @@ import { styles } from "./DetailCard.style";
 import CustomText from "../customText/CustomText";
 import { RestaurantModel } from "@/types/types";
 import { fetchOpenStatus } from "@/utils/openService";
-import { Colors } from "@/constants/colors";
+import { colors } from "@/constants/colors";
 import { findFilters } from "@/constants/filters";
 
 interface DetailCardProps {
@@ -39,31 +39,28 @@ const DetailCard: React.FC<DetailCardProps> = ({ details }) => {
     })
     .filter(Boolean);
   const filterNamesString = filterNames?.join("");
+
   return (
     <SafeAreaView>
-      {loading ? (
-        <ActivityIndicator size="large" color={Colors.Selected} />
-      ) : (
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <CustomText
+          title={"headline1"}
+          color={"black"}
+          content={details?.name}
+        />
+        <View>
           <CustomText
-            title={"headline1"}
-            color={"black"}
-            content={details?.name}
-          />
-          <View>
-            <CustomText
-              title={"headline2"}
-              color={"grey"}
-              content={filterNamesString}
-            />
-          </View>
-          <CustomText
-            title={"title1"}
-            color={isCurrentlyOpen ? Colors.Positive : Colors.Negative}
-            content={isCurrentlyOpen ? "Open" : "Closed"}
+            title={"headline2"}
+            color={"grey"}
+            content={filterNamesString}
           />
         </View>
-      )}
+        <CustomText
+          title={"title1"}
+          color={isCurrentlyOpen ? colors.Positive : colors.Negative}
+          content={isCurrentlyOpen ? "Open" : "Closed"}
+        />
+      </View>
     </SafeAreaView>
   );
 };

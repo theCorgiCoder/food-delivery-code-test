@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "flex-start",
-    paddingTop: 2,
+    alignItems: "center",
   },
   textBox: {
     paddingLeft: 5,

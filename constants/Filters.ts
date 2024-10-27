@@ -1,3 +1,4 @@
+//Filter Ids for matching filter bar
 export const findFilters = {
   topRated: {
     id: "5c64dea3-a4ac-4151-a2e3-42e7919a925d",
