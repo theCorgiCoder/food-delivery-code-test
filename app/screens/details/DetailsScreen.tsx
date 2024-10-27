@@ -1,4 +1,4 @@
-import { View, SafeAreaView, ViewStyle, ActivityIndicator } from "react-native";
+import { View, SafeAreaView } from "react-native";
 import CustomImage from "@/components/customImage/CustomImage";
 import DetailCard from "@/components/detailCard/DetailCard";
 import { styles } from "./DetailsScreen.styles";
@@ -7,7 +7,7 @@ import CustomButton from "@/components/button/CustomButton";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { router } from "expo-router";
-import { colors } from "@/constants/colors";
+import Spinner from "@/components/spinner/Spinner";
 
 const DetailsScreen = ({}) => {
   const selectedRestaurant = useSelector(
@@ -33,7 +33,7 @@ const DetailsScreen = ({}) => {
           </View>
         </>
       ) : (
-        <ActivityIndicator size="large" color={colors.Selected} />
+        <Spinner />
       )}
     </SafeAreaView>
   );
