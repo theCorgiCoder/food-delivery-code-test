@@ -19,6 +19,7 @@ export default function RootLayout() {
     <Provider store={store}>
       <ErrorComponent />
       <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
         <Stack.Screen name="screens/home/HomeScreen" />
         <Stack.Screen name="screens/details/DetailsScreen" />
       </Stack>
