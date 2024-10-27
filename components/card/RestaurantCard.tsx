@@ -29,8 +29,8 @@ const RestaurantCard: React.FC<CardProps> = ({
             <CustomText title={"title1"} content={data.name} color={"black"} />
             <Rating
               icon={StarIcon}
-              width={15}
-              height={15}
+              width={13}
+              height={13}
               textColor={"black"}
               textStyle={"subtitle"}
               showRating={data.rating}
