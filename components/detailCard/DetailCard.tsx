@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, SafeAreaView, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { styles } from "./DetailCard.style";
 import CustomText from "../customText/CustomText";
 import { RestaurantModel } from "@/types/types";

@@ -28,6 +28,7 @@ const Rating: React.FC<RatingProps> = ({
     <View style={styles.container}>
       <CustomIcon icon={icon} width={width} height={height} color={iconColor} />
       <CustomText
+        fontWeight={"bold"}
         title={textStyle}
         color={textColor}
         content={showRating.toFixed(1)}

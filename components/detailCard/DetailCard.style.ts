@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { colors } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
@@ -10,13 +10,21 @@ export const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 12,
     backgroundColor: colors.White,
+    ...Platform.select({
+      ios: {
+        shadowOffset: {
+          width: 1,
+          height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        marginVertical: 20,
+        elevation: 3,
+      },
+    }),
     shadowColor: colors.Black,
-    shadowOffset: {
-      width: 1,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
   },
   loaderContainer: {
     padding: 10,

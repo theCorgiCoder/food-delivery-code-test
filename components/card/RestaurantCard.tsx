@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ViewStyle, TouchableOpacity } from "react-native";
+import { TouchableOpacity, View, ViewStyle } from "react-native";
 import { styles } from "./RestaurantCard.styles";
 import CustomText from "../customText/CustomText";
 import Rating from "../rating/Rating";
@@ -8,6 +8,7 @@ import Clock from "../clock/Clock";
 import CustomImage from "../customImage/CustomImage";
 import { RestaurantModel } from "@/types/types";
 import { findFilters } from "@/constants/filters";
+import PressableComponent from "../pressableComponent/PressableComponent";
 
 interface CardProps {
   data: RestaurantModel;
@@ -22,7 +23,7 @@ const RestaurantCard: React.FC<CardProps> = ({
 }) => {
   return (
     <View style={[styles.container, style]}>
-      <TouchableOpacity onPress={handleOnPress} style={styles.pressable}>
+      <PressableComponent onPress={handleOnPress} style={styles.pressable}>
         <CustomImage image={data.image_url} style={styles.imageCorners} />
         <View style={styles.contentBox}>
           <View style={styles.title}>
@@ -55,6 +56,7 @@ const RestaurantCard: React.FC<CardProps> = ({
                     title="subtitle"
                     content={filter.name + (!isLast ? " • " : "")}
                     color="gray"
+                    fontWeight={"bold"}
                   />
                 )
               );
@@ -65,10 +67,10 @@ const RestaurantCard: React.FC<CardProps> = ({
             time={data.delivery_time_minutes}
             width={13}
             height={13}
-            textColor={"grey"}
+            textColor={"black"}
           />
         </View>
-      </TouchableOpacity>
+      </PressableComponent>
     </View>
   );
 };

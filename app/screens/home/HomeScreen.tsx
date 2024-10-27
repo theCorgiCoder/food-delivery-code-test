@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, View, Text, FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,7 @@ import { RootState } from "@/redux/store";
 import useFetchRestaurantsAndFilters from "@/hooks/useRestaurants";
 import { useFilters } from "@/hooks/useFilters";
 import useRestaurants from "@/hooks/useRestaurants";
-import { colors } from "@/constants/colors";
+import Spinner from "@/components/spinner/Spinner";
 
 const HomeScreen = () => {
   const router = useRouter();
@@ -45,7 +45,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       {filtersLoading || restaurantLoading ? (
-        <ActivityIndicator size="large" color={colors.Selected} />
+        <Spinner />
       ) : (
         <>
           <Header style={styles.header} />

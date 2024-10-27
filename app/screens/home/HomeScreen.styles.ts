@@ -25,6 +25,6 @@ export const styles = StyleSheet.create({
     height: "100%",
   },
   footer: {
-    height: 150,
+    height: 200,
   },
 });

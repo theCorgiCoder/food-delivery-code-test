@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { colors } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
@@ -11,18 +11,26 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 12,
   },
   pressable: {
-    marginVertical: 6,
-    height: 200,
-    width: "100%",
+    ...Platform.select({
+      ios: {
+        marginVertical: 6,
+        shadowOffset: {
+          width: 1,
+          height: 2,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        marginVertical: 20,
+        elevation: 25,
+      },
+    }),
     borderTopRightRadius: 12,
     borderTopLeftRadius: 12,
+    height: 200,
+    width: "100%",
     shadowColor: colors.Black,
-    shadowOffset: {
-      width: 1,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
   },
   contentBox: {
     padding: 8,
