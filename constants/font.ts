@@ -2,12 +2,12 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   titleOneText: {
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Helvetica",
     fontSize: 18,
     fontWeight: 400,
   },
   titleTwoText: {
-    fontFamily: "Poppins-Regular",
+    fontFamily: "Poppins",
     fontSize: 14,
     fontWeight: 500,
   },
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     fontWeight: 400,
   },
   footerText: {
-    fontFamily: "Inter_18pt-Regular",
+    fontFamily: "Inter",
     fontSize: 10,
     fontWeight: 500,
   },

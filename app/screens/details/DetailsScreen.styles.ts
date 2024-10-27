@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { colors } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
@@ -14,7 +14,11 @@ export const styles = StyleSheet.create({
     position: "absolute",
     left: 15,
     right: 15,
-    top: "30%",
+    ...Platform.select({
+      ios: { top: "30%" },
+      android: { top: "20%" },
+    }),
+
     zIndex: 10,
   },
   button: {

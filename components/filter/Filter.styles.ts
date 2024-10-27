@@ -1,10 +1,10 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { colors } from "@/constants/colors";
 
 export const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
-    marginLeft: 5,
+    marginLeft: 10,
   },
   dropShadow: {
     justifyContent: "flex-start",
@@ -15,12 +15,19 @@ export const styles = StyleSheet.create({
     marginHorizontal: 5,
     backgroundColor: colors.Background,
     shadowColor: colors.Black,
-    shadowOffset: {
-      width: 1,
-      height: 1,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
+    ...Platform.select({
+      ios: {
+        shadowOffset: {
+          width: 1,
+          height: 1,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
   },
   image: {
     width: 50,
@@ -31,6 +38,7 @@ export const styles = StyleSheet.create({
     paddingRight: 10,
     paddingLeft: 5,
     textAlign: "center",
+    textAlignVertical: "center",
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
