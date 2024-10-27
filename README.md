@@ -82,22 +82,23 @@ npm start        # Starts with npm
 npx expo start   # Starts with Expo (recommended)
 yarn start       # Starts with Yarn
 
+```
+
 2. Open the Android or iOS Simulator:
 
 - Using Command Line: Run the following commands to open a specific simulator:
 
 ```
-
 npm run ios # Opens the iOS simulator
 npm run android # Opens the Android simulator
 yarn ios # Opens the iOS simulator
 yarn android # Opens the Android simulator
 
 ```
+
 - Expo CLI Shortcuts:
 
 ```
-
 Press a to open the Android simulator.
 Press i to open the iOS simulator (recommended for Mac users).
 
@@ -107,8 +108,8 @@ Press i to open the iOS simulator (recommended for Mac users).
 
 Please check the follow documentation for further details on setting up your environment and installing the proper dependencies:
 
-[React Native Doc](https://reactnative.dev/docs/environment-setup)
-[Expo Go Doc](https://docs.expo.dev/get-started/set-up-your-environment/?platform=ios&device=simulated)
+- [React Native Doc](https://reactnative.dev/docs/environment-setup)
+- [Expo Go Doc](https://docs.expo.dev/get-started/set-up-your-environment/?platform=ios&device=simulated)
 
 ## Developers & Contact
 
@@ -119,4 +120,3 @@ Please check the follow documentation for further details on setting up your env
 If you have any questions or feedback please feel free to reach out to me here:
 
 📧 **Email:** [elainebergstrom26@gmail.com](elainebergstrom26@gmail.com)
-```
