@@ -23,7 +23,7 @@ const PressableComponent: React.FC<PressableComponentProps> = ({
     <Pressable
       onPress={onPress}
       android_ripple={{ color: "transparent" }}
-      style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }, style]}
+      style={({ pressed }) => [{ opacity: pressed ? 0.6 : 1 }, style]}
     >
       {children}
     </Pressable>

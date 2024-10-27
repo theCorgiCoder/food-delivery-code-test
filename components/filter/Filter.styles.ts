@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-start",
     flexDirection: "row",
     alignItems: "center",
-    maxWidth: 150,
     borderRadius: 25,
     marginHorizontal: 5,
     backgroundColor: colors.Background,
@@ -34,11 +33,9 @@ export const styles = StyleSheet.create({
     height: 50,
   },
   text: {
-    maxWidth: 150,
-    paddingRight: 10,
-    paddingLeft: 5,
-    textAlign: "center",
-    textAlignVertical: "center",
+    marginLeft: 10,
+    marginRight: 10,
+    paddingVertical: 5,
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

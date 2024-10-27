@@ -26,12 +26,9 @@ const Filter: React.FC<FilterProps> = ({
           style={styles.image}
           resizeMode="cover"
         />
-        <CustomText
-          title={"title2"}
-          content={name}
-          color={"black"}
-          style={styles.text}
-        />
+        <View style={styles.text}>
+          <CustomText title={"title2"} content={name} color={"black"} />
+        </View>
         {isSelected && <View style={styles.overlay} />}
       </View>
     </TouchableOpacity>
