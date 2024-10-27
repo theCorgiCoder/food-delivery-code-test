@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, SafeAreaView, View } from "react-native";
 import { styles } from "./DetailCard.style";
 import CustomText from "../customText/CustomText";
-import { RestaurantModel } from "@/models/apiTypes";
+import { RestaurantModel } from "@/types/types";
 import { fetchOpenStatus } from "@/utils/openService";
 import { Colors } from "@/constants/colors";
 import { findFilters } from "@/constants/filters";

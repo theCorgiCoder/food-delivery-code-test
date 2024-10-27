@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RestaurantModel } from "@/models/apiTypes";
-import { RestaurantState } from "../types";
+import { RestaurantModel, RestaurantState } from "@/types/types";
 
 const initialState: RestaurantState = {
   selectedRestaurant: null,

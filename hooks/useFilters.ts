@@ -1,7 +1,7 @@
 // src/hooks/useFilters.ts
 import { useState, useEffect } from "react";
 import { BASE_URL } from "@/constants/urls";
-import { FilterModel } from "@/models/apiTypes";
+import { FilterModel } from "@/types/types";
 import { filterIds } from "@/constants/filters";
 
 // Fetch a filter by its ID

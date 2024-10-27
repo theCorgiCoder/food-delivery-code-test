@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, View, ViewStyle } from "react-native";
 import Filter from "../filter/Filter";
-import { FilterModel } from "@/models/apiTypes";
+import { FilterModel } from "@/types/types";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 

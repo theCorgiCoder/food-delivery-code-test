@@ -12,7 +12,7 @@ import {
   setFilter,
   clearFilters,
 } from "@/redux/slices/restaurantSlice";
-import { RestaurantModel } from "@/models/apiTypes";
+import { RestaurantModel } from "@/types/types";
 import { RootState } from "@/redux/store";
 import useFetchRestaurantsAndFilters from "@/hooks/useRestaurants";
 import { useFilters } from "@/hooks/useFilters";
