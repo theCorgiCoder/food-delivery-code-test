@@ -5,7 +5,7 @@ A simple food delivery application under the specifications given by Umain.
 ## Description
 
 This project is a mobile application built using React Native with Expo, Typescript,
-and Redux. The app inclused state management using Redus for global state handling
+and Redux. The app inclused state management using Redux for global state handling
 and Typescript because that's what we all use nowadays.
 
 The app pulls from the provided API to display a list of restaurant cards and filters
@@ -20,6 +20,8 @@ I also decided to use Redux, mainly because I am not yet confident in Redux and 
 to learn more about using it as a state management library.
 
 I think the most difficult part of this project was figuring out how to properly incorporate Redux for the API management and setting up the filter button logic properly. It was very easy for the code to get quite messy so I took some extra time to clean up the code to make it more manageable. I didn't want the screen pages to be littered with so much code if I could help it.
+
+I am most proud of the filter buttons, it was important that users were able to understand when a filtere was active and that multiple could be pressed at once.
 
 ## Getting Started
 
@@ -53,7 +55,7 @@ cd food-delivery-code-test
 2. Make sure you have either Node.js installed, which includes npm, or install Yarn if you prefer. Run the appropriate command:
 
 ```
- npm install    # Installs dependencies using npm
+npm install    # Installs dependencies using npm
 yarn install   # Installs dependencies using Yarn
 ```
 

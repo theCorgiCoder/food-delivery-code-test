@@ -60,8 +60,8 @@ const restaurantSlice = createSlice({
       state.restaurantLoading = action.payload;
     },
 
-    setError(state, action: PayloadAction<string | null>) {
-      state.restaurantError = action.payload;
+    setError(state, action: PayloadAction<Error | null>) {
+      state.restaurantError = action.payload ? action.payload.message : null;
     },
   },
 });
