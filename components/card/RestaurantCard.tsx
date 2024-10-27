@@ -23,17 +23,11 @@ const RestaurantCard: React.FC<CardProps> = ({
 }) => {
   return (
     <View style={[styles.container, style]}>
-      {/* <PressableComponent onPress={handleOnPress} style={styles.pressable}> */}
-      <TouchableOpacity onPress={handleOnPress} style={styles.pressable}>
+      <PressableComponent onPress={handleOnPress} style={styles.pressable}>
         <CustomImage image={data.image_url} style={styles.imageCorners} />
         <View style={styles.contentBox}>
           <View style={styles.title}>
-            <CustomText
-              title={"title1"}
-              fontWeight={"500"}
-              content={data.name}
-              color={"black"}
-            />
+            <CustomText title={"title1"} content={data.name} color={"black"} />
             <Rating
               icon={StarIcon}
               width={13}
@@ -76,8 +70,7 @@ const RestaurantCard: React.FC<CardProps> = ({
             textColor={"black"}
           />
         </View>
-      </TouchableOpacity>
-      {/* </PressableComponent> */}
+      </PressableComponent>
     </View>
   );
 };
