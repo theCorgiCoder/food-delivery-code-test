@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import CustomIcon from "../icon/CustomIcon";
 import { styles } from "./Rating.styles";
 import { SvgProps } from "react-native-svg";

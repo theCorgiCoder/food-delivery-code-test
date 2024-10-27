@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, SafeAreaView, View } from "react-native";
 import { styles } from "./DetailCard.style";
 import CustomText from "../customText/CustomText";
-import { RestaurantModel } from "@/models/apiTypes";
+import { RestaurantModel } from "@/types/types";
 import { fetchOpenStatus } from "@/utils/openService";
-import { Colors } from "@/constants/Colors";
-import { findFilters } from "@/constants/Filters";
+import { Colors } from "@/constants/colors";
+import { findFilters } from "@/constants/filters";
 
 interface DetailCardProps {
   details: RestaurantModel | null;
@@ -27,35 +27,44 @@ const DetailCard: React.FC<DetailCardProps> = ({ details }) => {
     fetchStatus();
   }, [details]);
 
-  // If loading or no details available yet, show a loader
-  if (loading) {
-    return (
-      <View style={styles.loaderContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  }
-
   const filterNames = details?.filterIds
-    ?.map((filterId) => {
+    ?.map((filterId, index) => {
       // Find the filter object that matches the filterId
-      const filter = Object.values(findFilters).find((f) => f.id === filterId);
-      return filter ? filter.name : null;
-    })
-    .join(" • ");
+      if (!findFilters) return null;
 
+      const filter = Object.values(findFilters).find((f) => f.id === filterId);
+      const isLast = index === details.filterIds.length - 1;
+
+      return filter ? filter.name + (!isLast ? " • " : "") : null;
+    })
+    .filter(Boolean);
+  const filterNamesString = filterNames?.join("");
   return (
-    <View style={styles.container}>
-      <CustomText title={"headline1"} color={"black"} content={details?.name} />
-      <View>
-        <CustomText title={"headline2"} color={"grey"} content={filterNames} />
-      </View>
-      <CustomText
-        title={"title1"}
-        color={isCurrentlyOpen ? Colors.Positive : Colors.Negative}
-        content={isCurrentlyOpen ? "Open" : "Closed"}
-      />
-    </View>
+    <SafeAreaView>
+      {loading ? (
+        <ActivityIndicator size="large" color={Colors.Selected} />
+      ) : (
+        <View style={styles.container}>
+          <CustomText
+            title={"headline1"}
+            color={"black"}
+            content={details?.name}
+          />
+          <View>
+            <CustomText
+              title={"headline2"}
+              color={"grey"}
+              content={filterNamesString}
+            />
+          </View>
+          <CustomText
+            title={"title1"}
+            color={isCurrentlyOpen ? Colors.Positive : Colors.Negative}
+            content={isCurrentlyOpen ? "Open" : "Closed"}
+          />
+        </View>
+      )}
+    </SafeAreaView>
   );
 };
 

@@ -6,10 +6,8 @@ import Rating from "../rating/Rating";
 import StarIcon from "@/assets/images/starIcon.svg";
 import Clock from "../clock/Clock";
 import CustomImage from "../customImage/CustomImage";
-import usePressState from "@/hooks/usePressState";
-import { Colors } from "@/constants/Colors";
-import { RestaurantModel } from "@/models/apiTypes";
-import { findFilters } from "@/constants/Filters";
+import { RestaurantModel } from "@/types/types";
+import { findFilters } from "@/constants/filters";
 
 interface CardProps {
   data: RestaurantModel;
@@ -41,7 +39,6 @@ const RestaurantCard: React.FC<CardProps> = ({
 
           <View style={styles.tags}>
             {data.filterIds?.map((filterId, index) => {
-              // Find the corresponding filter using the filterId
               const filter = Object.values(findFilters).find(
                 (f) => f.id === filterId
               );

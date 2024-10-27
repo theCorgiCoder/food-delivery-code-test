@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Image, Text, ViewStyle, View } from "react-native";
+import { TouchableOpacity, Image, ViewStyle, View } from "react-native";
 import { styles } from "./Filter.styles";
 import CustomText from "../customText/CustomText";
 
@@ -9,7 +9,6 @@ interface FilterProps {
   id: string;
   isSelected: boolean;
   onPress: (filterId: string | null) => void;
-  style?: ViewStyle | ViewStyle[];
 }
 
 const Filter: React.FC<FilterProps> = ({
@@ -18,7 +17,6 @@ const Filter: React.FC<FilterProps> = ({
   id,
   isSelected,
   onPress,
-  style,
 }) => {
   return (
     <TouchableOpacity onPress={() => onPress(id)} style={styles.container}>

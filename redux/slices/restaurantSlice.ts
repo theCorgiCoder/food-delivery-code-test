@@ -1,18 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RestaurantModel } from "@/models/apiTypes";
-
-interface RestaurantState {
-  restaurants: RestaurantModel[];
-  filteredRestaurants: RestaurantModel[];
-  selectedRestaurant: RestaurantModel | null;
-  selectedFilters: string[];
-}
+import { RestaurantModel, RestaurantState } from "@/types/types";
 
 const initialState: RestaurantState = {
   selectedRestaurant: null,
   restaurants: [],
   filteredRestaurants: [],
   selectedFilters: [],
+  restaurantLoading: false,
+  restaurantError: null,
 };
 
 const restaurantSlice = createSlice({
@@ -23,29 +18,7 @@ const restaurantSlice = createSlice({
       state.restaurants = action.payload;
       state.filteredRestaurants = action.payload;
     },
-    // setFilter(state, action: PayloadAction<string | null>) {
-    //   const filterId = action.payload;
 
-    //   if (filterId === null) {
-    //     //clears selected filter
-    //     state.filteredRestaurants = state.restaurants;
-    //     state.selectedFilters = [];
-    //   } else if (state.selectedFilters.includes(filterId)) {
-    //     // If the same filter is clicked again, clear the filter
-    //     state.selectedFilters = state.selectedFilters.filter(
-    //       (id) => id !== filterId
-    //     );
-    //     state.filteredRestaurants = state.restaurants.filter((restaurant) =>
-    //       restaurant.filterIds.some((id) => state.selectedFilters.includes(id))
-    //     );
-    //   } else {
-    //     // Add new filter to selected filters
-    //     state.selectedFilters.push(filterId);
-    //     state.filteredRestaurants = state.restaurants.filter((restaurant) =>
-    //       restaurant.filterIds.includes(filterId)
-    //     );
-    //   }
-    // },
     setFilter(state, action: PayloadAction<string>) {
       const filterId = action.payload;
 
@@ -60,23 +33,47 @@ const restaurantSlice = createSlice({
       }
 
       // Update filteredRestaurants based on selectedFilters
-      if (state.selectedFilters.length > 0) {
-        state.filteredRestaurants = state.restaurants.filter((restaurant) =>
-          restaurant.filterIds.some((id) => state.selectedFilters.includes(id))
-        );
-      } else {
-        state.filteredRestaurants = state.restaurants; // Show all restaurants if no filters are selected
-      }
+      state.filteredRestaurants =
+        state.selectedFilters.length > 0
+          ? state.restaurants.filter((restaurant) =>
+              restaurant.filterIds.some((id) =>
+                state.selectedFilters.includes(id)
+              )
+            )
+          : state.restaurants; // Show all if no filters selected
+    },
+
+    clearFilters(state) {
+      state.selectedFilters = [];
+      state.filteredRestaurants = state.restaurants;
     },
 
     selectRestaurant(state, action: PayloadAction<RestaurantModel | null>) {
       state.selectedRestaurant = action.payload;
     },
+
+    clearError(state) {
+      state.restaurantError = null;
+    },
+
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.restaurantLoading = action.payload;
+    },
+
+    setError(state, action: PayloadAction<string | null>) {
+      state.restaurantError = action.payload;
+    },
   },
 });
 
-export const { setRestaurants, setFilter, selectRestaurant } =
-  restaurantSlice.actions;
+export const {
+  setRestaurants,
+  setFilter,
+  selectRestaurant,
+  clearError,
+  clearFilters,
+  setLoading,
+  setError,
+} = restaurantSlice.actions;
 
-// Export reducer
 export default restaurantSlice.reducer;
