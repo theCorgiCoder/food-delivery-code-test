@@ -18,6 +18,7 @@ import useFetchRestaurantsAndFilters from "@/hooks/useRestaurants";
 import { useFilters } from "@/hooks/useFilters";
 import useRestaurants from "@/hooks/useRestaurants";
 import Spinner from "@/components/spinner/Spinner";
+import { fetchOpenStatus } from "@/utils/openService";
 
 const HomeScreen = () => {
   const router = useRouter();
@@ -36,10 +37,17 @@ const HomeScreen = () => {
     }
   };
 
-  const handlePressRestaurant = (restaurant: RestaurantModel) => {
+  const handlePressRestaurant = async (restaurant: RestaurantModel) => {
     dispatch(clearFilters());
     dispatch(selectRestaurant(restaurant));
-    router.push("/screens/details/DetailsScreen");
+    // Fetch open status before navigating
+    const isCurrentlyOpen = await fetchOpenStatus(restaurant.id);
+
+    // Pass the open status as a parameter when navigating
+    router.push({
+      pathname: "/screens/details/DetailsScreen",
+      params: { isCurrentlyOpen: isCurrentlyOpen.toString() },
+    });
   };
 
   return (

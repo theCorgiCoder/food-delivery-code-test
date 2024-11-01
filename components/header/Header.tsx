@@ -1,14 +1,11 @@
-import { View, Text, Button, StyleProp, ViewStyle } from "react-native";
-import { useRouter } from "expo-router";
+import { View, StyleProp, ViewStyle } from "react-native";
 import Logo from "@/assets/images/Logo.svg";
 
 interface HeaderProps {
-  style?: StyleProp<ViewStyle>; // Allow optional custom styles for the View
+  style?: StyleProp<ViewStyle>;
 }
 
 const Header: React.FC<HeaderProps> = ({ style }) => {
-  const router = useRouter();
-
   return (
     <View style={style}>
       <Logo />

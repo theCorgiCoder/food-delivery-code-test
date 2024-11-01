@@ -9,24 +9,13 @@ import { findFilters } from "@/constants/filters";
 
 interface DetailCardProps {
   details: RestaurantModel | null;
+  isCurrentlyOpen: boolean | null;
 }
 
-const DetailCard: React.FC<DetailCardProps> = ({ details }) => {
-  const [isCurrentlyOpen, setIsCurrentlyOpen] = useState<boolean | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchStatus = async () => {
-      if (details?.id) {
-        const status = await fetchOpenStatus(details.id);
-        setIsCurrentlyOpen(status);
-      }
-      setLoading(false);
-    };
-
-    fetchStatus();
-  }, [details]);
-
+const DetailCard: React.FC<DetailCardProps> = ({
+  details,
+  isCurrentlyOpen,
+}) => {
   const filterNames = details?.filterIds
     ?.map((filterId, index) => {
       // Find the filter object that matches the filterId

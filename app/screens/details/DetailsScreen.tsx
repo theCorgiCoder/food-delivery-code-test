@@ -6,13 +6,16 @@ import BackIcon from "../../../assets/images/backIcon.svg";
 import CustomButton from "@/components/button/CustomButton";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import Spinner from "@/components/spinner/Spinner";
+import { fetchOpenStatus } from "@/utils/openService";
 
 const DetailsScreen = ({}) => {
   const selectedRestaurant = useSelector(
     (state: RootState) => state.restaurant.selectedRestaurant
   );
+  const { isCurrentlyOpen } = useLocalSearchParams();
+
   return (
     <SafeAreaView style={styles.container}>
       {selectedRestaurant ? (
@@ -29,7 +32,10 @@ const DetailsScreen = ({}) => {
             <CustomImage image={selectedRestaurant?.image_url} />
           </View>
           <View style={styles.content}>
-            <DetailCard details={selectedRestaurant} />
+            <DetailCard
+              isCurrentlyOpen={isCurrentlyOpen === "true"}
+              details={selectedRestaurant}
+            />
           </View>
         </>
       ) : (
